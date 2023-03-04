@@ -5,5 +5,5 @@ int main() {
     ExampleController controller(&model);
     ConsoleView view(&controller);
     view.startEventLoop();
-    return 1;
+    return 0;
 }

@@ -41,7 +41,9 @@
 *.su
 *.idb
 *.pdb
-
+CMakeLists.txt
+cmake-build-debug
+.gitkeep
 # Kernel Module Compile Results
 *.mod*
 *.cmd
