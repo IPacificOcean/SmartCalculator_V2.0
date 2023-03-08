@@ -30,10 +30,13 @@ public:
  * @param token
  * @return percedance
  */
-    int GetPercedance(char c) const;
+    int GetPrecedence(char c) const;
 
-    int FuncIs(int index);
+    char FuncIs(int &index);
 
+    void PopFromStack();
+
+    void ConditionsByPrecedence(char c);
 private:
     std::string expression_;
 

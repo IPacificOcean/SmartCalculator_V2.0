@@ -4,18 +4,37 @@
 
 #include "calculator.h"
 
-
 void Calculator::ExpressionToRpn() {
-    for (const char c : expression_) {
-        if (c == '+' || c == '-' || c == '*' || c == '/') {
-            operators_.push(c);
-        } else if (c == 's') {
-
-        } else if (c != ' ') {
+    for (int i = 0; i < expression_.size(); i++) {
+        char c = expression_[i];
+        if (c != ' ' && isdigit(c)) {
             rpn_expression_.push(c);
+        } else if (isalpha(c)) {
+            c = FuncIs(i);
+            operators_.push(c);
+        } else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '(' || c == ')' || c == '^') {
+            ConditionsByPrecedence(c);
         }
     }
+    PopFromStack();
+}
 
+
+void Calculator::ConditionsByPrecedence(char c) {
+    if (operators_.empty() || c == '(' || GetPrecedence(c) > GetPrecedence(operators_.top())) operators_.push(c);
+    else if (c == ')') {
+        while (operators_.top() != '(') {
+            rpn_expression_.push(operators_.top());
+            operators_.pop();
+        }
+        operators_.pop();
+    } else {
+        PopFromStack();
+        operators_.push(c);
+    }
+}
+
+void Calculator::PopFromStack() {
     while (!operators_.empty()) {
         rpn_expression_.push(operators_.top());
         operators_.pop();
@@ -30,19 +49,65 @@ void Calculator::PrintRpnExpression() {
     }
 }
 
-int Calculator::GetPercedance(char c) const {
-    int percedance;
-    if (c == '(')  percedance = 1;
-    if (c == '+' || c == '-') percedance = 2;
-    if (c == '*' || c == '/' || c == 'm') percedance = 3;
-    return percedance;
+int Calculator::GetPrecedence(char c) const {
+    int precedence;
+    if (c == '(')  precedence = 0;
+    else if (c == ')')  precedence = -1;
+    else if (c == '+' || c == '-') precedence = 1;
+    else if (c == '*' || c == '/' || c == 'm') precedence = 2;
+    else if (c == '^') precedence = 3;
+    else precedence = 4;
+    return precedence;
 }
 
-int Calculator::FuncIs(int index) {
-    for (int i = index; i < expression_.size(); i++) {
-        int next_symbol = i + 1;
-        if (expression_[i] == 's' && expression_[next_symbol] == 'i') index = i + 3;
-
+char Calculator::FuncIs(int &index) {
+    char symbol_func{};
+    int next_symbol = index + 1;
+    if (expression_[index] == 's' && expression_[next_symbol] == 'i') {
+        index = index + 2;
+        symbol_func = 's';
+        }
+    if (expression_[index] == 'm') {
+        index = index + 2;
+        symbol_func = 'm';
     }
-    return index;
+    if (expression_[index] == 'c') {
+        index = index + 2;
+        symbol_func = 'c';
+    }
+    if (expression_[index] == 't') {
+        index = index + 2;
+        symbol_func = 't';
+    }
+    if (expression_[index] == 'l' && expression_[next_symbol] == 'n') {
+        index = index + 1;
+        symbol_func = 'l';
+    }
+    if (expression_[index] == 'l' && expression_[next_symbol] == 'o') {
+        index = index + 2;
+        symbol_func = 'L';
+    }
+    if (expression_[index] == 'a' && expression_[next_symbol] == 's') {
+        index = index + 3;
+        symbol_func = 'S';
+    }
+    if (expression_[index] == 'a' && expression_[next_symbol] == 'c') {
+        index = index + 3;
+        symbol_func = 'C';
+    }
+    if (expression_[index] == 'a' && expression_[next_symbol] == 't') {
+        index = index + 3;
+        symbol_func = 'T';
+    }
+    if (expression_[index] == 's' && expression_[next_symbol] == 'q') {
+        index = index + 3;
+        symbol_func = 'q';
+    }
+    return symbol_func;
 }
+
+
+
+
+
+
