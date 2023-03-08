@@ -13,7 +13,7 @@
 class Calculator {
 public:
     std::stack<char> operators_;
-    std::queue<char> rpn_expression_;
+    std::queue<std::string> rpn_expression_;
 
     Calculator(const std::string &expression) : expression_(expression) {}
 

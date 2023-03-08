@@ -1,15 +1,18 @@
 //
 // Created by Qyburn Bongo on 3/7/23.
 //
-#include <cstdlib>
+//#include <cstdlib>
 #include <string>
 #include "calculator.h"
 
+
 void Calculator::ExpressionToRpn() {
-    for (size_t i = 0; i < expression_.size(); i++) {
+    for (size_t i = 0; i < expression_.size(); ++i) {
         char c = expression_[i];
         if (c != ' ' && isdigit(c)) {
-            rpn_expression_.push(c);
+            double d = ParseOfDigit(i);
+            rpn_expression_.push(std::to_string(d));
+            --i;
         } else if (isalpha(c)) {
             c = FuncIs(i);
             operators_.push(c);
@@ -33,7 +36,8 @@ void Calculator::ConditionsByPrecedence(char c) {
     if (operators_.empty() || c == '(' || GetPrecedence(c) > GetPrecedence(operators_.top())) operators_.push(c);
     else if (c == ')') {
         while (operators_.top() != '(') {
-            rpn_expression_.push(operators_.top());
+            std::string op = {operators_.top()};
+            rpn_expression_.push(op);
             operators_.pop();
         }
         operators_.pop();
@@ -45,13 +49,14 @@ void Calculator::ConditionsByPrecedence(char c) {
 
 void Calculator::PopFromStack() {
     while (!operators_.empty()) {
-        rpn_expression_.push(operators_.top());
+        std::string op = {operators_.top()};
+        rpn_expression_.push(op);
         operators_.pop();
     }
 }
 
 void Calculator::PrintRpnExpression() {
-    std::queue<char> rpn_expression2 = rpn_expression_;
+    std::queue<std::string> rpn_expression2 = rpn_expression_;
     while (!rpn_expression2.empty()) {
         std::cout << rpn_expression2.front() ;
         rpn_expression2.pop();
@@ -71,7 +76,7 @@ int Calculator::GetPrecedence(char c) const {
 
 char Calculator::FuncIs(size_t &index) {
     char symbol_func{};
-    int next_symbol = index + 1;
+    size_t next_symbol = index + 1;
     if (expression_[index] == 's' && expression_[next_symbol] == 'i') {
         index = index + 2;
         symbol_func = 's';

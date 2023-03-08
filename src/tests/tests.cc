@@ -44,8 +44,19 @@ TEST_F(Calculator_test, expression_to_rpn_brck) {
 
 TEST_F(Calculator_test, expression_to_rpn_funck) {
     std::string expression = "2*sin(3)+sqrt(5)";
+//    std::string expression = "2+2";
 //    cout << expression.length() << endl;
 //    cout << "________________" << endl;
+    Calculator calc(expression);
+    calc.ExpressionToRpn();
+    calc.PrintExpression();
+    cout << "________________" << endl;
+    cout << "23s*5q+" << endl;
+    calc.PrintRpnExpression();
+}
+
+TEST_F(Calculator_test, expression_to_rpn_double) {
+    std::string expression = "2.58*sin(3.45)+sqrt(5)";
     Calculator calc(expression);
     calc.ExpressionToRpn();
     calc.PrintExpression();
