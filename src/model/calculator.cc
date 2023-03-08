@@ -22,10 +22,10 @@ void Calculator::ExpressionToRpn() {
 
 
 double Calculator::ParseOfDigit(size_t &index) {
-    std::size_t pos {};
+    std::size_t pos = index;
     double digit {};
-    digit = std::stod(expression_, &pos);
-    index = pos;
+    digit = std::stod (expression_.substr(pos), &pos);
+    index += pos;
     return digit;
 }
 
