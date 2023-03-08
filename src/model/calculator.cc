@@ -1,11 +1,12 @@
 //
 // Created by Qyburn Bongo on 3/7/23.
 //
-
+#include <cstdlib>
+#include <string>
 #include "calculator.h"
 
 void Calculator::ExpressionToRpn() {
-    for (int i = 0; i < expression_.size(); i++) {
+    for (size_t i = 0; i < expression_.size(); i++) {
         char c = expression_[i];
         if (c != ' ' && isdigit(c)) {
             rpn_expression_.push(c);
@@ -19,6 +20,14 @@ void Calculator::ExpressionToRpn() {
     PopFromStack();
 }
 
+
+double Calculator::ParseOfDigit(size_t &index) {
+    std::size_t pos {};
+    double digit {};
+    digit = std::stod(expression_, &pos);
+    index = pos;
+    return digit;
+}
 
 void Calculator::ConditionsByPrecedence(char c) {
     if (operators_.empty() || c == '(' || GetPrecedence(c) > GetPrecedence(operators_.top())) operators_.push(c);
@@ -60,7 +69,7 @@ int Calculator::GetPrecedence(char c) const {
     return precedence;
 }
 
-char Calculator::FuncIs(int &index) {
+char Calculator::FuncIs(size_t &index) {
     char symbol_func{};
     int next_symbol = index + 1;
     if (expression_[index] == 's' && expression_[next_symbol] == 'i') {
@@ -105,6 +114,7 @@ char Calculator::FuncIs(int &index) {
     }
     return symbol_func;
 }
+
 
 
 

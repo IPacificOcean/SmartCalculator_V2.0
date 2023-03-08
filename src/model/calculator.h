@@ -32,11 +32,13 @@ public:
  */
     int GetPrecedence(char c) const;
 
-    char FuncIs(int &index);
+    char FuncIs(size_t &index);
 
     void PopFromStack();
 
     void ConditionsByPrecedence(char c);
+
+    double ParseOfDigit( size_t &index);
 private:
     std::string expression_;
 

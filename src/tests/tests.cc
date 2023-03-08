@@ -54,6 +54,17 @@ TEST_F(Calculator_test, expression_to_rpn_funck) {
     calc.PrintRpnExpression();
 }
 
+TEST_F(Calculator_test, ParseOfDigit) {
+    std::string expression = "25.58+89.47";
+    double result = 0;
+    size_t index = 0;
+    Calculator calc(expression);
+    result = calc.ParseOfDigit(index);
+    cout << "________________" << endl;
+    cout << result << endl;
+    cout << index << endl;
+}
+
 
 
 
