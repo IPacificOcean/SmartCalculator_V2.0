@@ -55,11 +55,18 @@ public:
  * @param index is expression string index which is shifted by the number of characters in the number
  * @return double number
  */
-    double ParseOfDigit(size_t &index);
+    double ParseOfDigitFromExpression(size_t &index);
+
+    void GetDigitFromRpn(std::string token);
+
+    double CalculateRpnExpression();
+
+    void BinaryFunc(std::string token);
 
 private:
     std::string expression_;
     std::stack<char> operators_;
+    std::stack<double> numbers_;
     std::queue<std::string> rpn_expression_;
 };
 }

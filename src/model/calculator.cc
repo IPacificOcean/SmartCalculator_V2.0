@@ -2,6 +2,8 @@
 // Created by Qyburn Bongo on 3/7/23.
 //
 #include <string>
+#include <cmath>
+
 #include "calculator.h"
 
 
@@ -9,21 +11,20 @@ void s21::Calculator::ExpressionToRpn() {
     for (size_t i = 0; i < expression_.size(); ++i) {
         char c = expression_[i];
         if (c != ' ' && isdigit(c)) {
-            double d = ParseOfDigit(i);
+            double d = ParseOfDigitFromExpression(i);
             rpn_expression_.push(std::to_string(d));
             --i;
         } else if (isalpha(c)) {
             c = CheckFuncIs(i);
             operators_.push(c);
-        } else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '(' || c == ')' || c == '^') {
+        } else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '(' || c == ')' || c == '^' || c == 'm') {
             ConditionsByPrecedence(c);
         }
     }
     PopFromStack();
 }
 
-
-double s21::Calculator::ParseOfDigit(size_t &index) {
+double s21::Calculator::ParseOfDigitFromExpression(size_t &index) {
     std::size_t pos = index;
     double digit{};
     digit = std::stod(expression_.substr(pos), &pos);
@@ -32,7 +33,9 @@ double s21::Calculator::ParseOfDigit(size_t &index) {
 }
 
 void s21::Calculator::ConditionsByPrecedence(char c) {
-    if (operators_.empty() || c == '(' || GetPrecedence(c) > GetPrecedence(operators_.top())) operators_.push(c);
+    if (operators_.empty() || c == '(' || GetPrecedence(c) > GetPrecedence(operators_.top()) ||
+        (c == '^' && operators_.top() == '^'))
+        operators_.push(c);
     else if (c == ')') {
         while (operators_.top() != '(') {
             std::string op = {operators_.top()};
@@ -48,9 +51,11 @@ void s21::Calculator::ConditionsByPrecedence(char c) {
 
 void s21::Calculator::PopFromStack() {
     while (!operators_.empty()) {
-        std::string op = {operators_.top()};
-        rpn_expression_.push(op);
-        operators_.pop();
+        if (operators_.top() == '(') {break;}
+            std::string op = {operators_.top()};
+            rpn_expression_.push(op);
+            operators_.pop();
+
     }
 }
 
@@ -117,6 +122,41 @@ char s21::Calculator::CheckFuncIs(size_t &index) {
         symbol_func = 'q';
     }
     return symbol_func;
+}
+
+double s21::Calculator::CalculateRpnExpression() {
+    double result = 0.0;
+    int error = 0;
+    while (!rpn_expression_.empty()) {
+        std::string token = rpn_expression_.front();
+        rpn_expression_.pop();
+        GetDigitFromRpn(token);
+        if (token == "+" || token == "-" || token == "*" || token == "/" || token == "^" || token == "mod"){
+            BinaryFunc(token);
+        }
+    }
+    return result = numbers_.top(); ;
+}
+
+void s21::Calculator::GetDigitFromRpn(std::string token) {
+    if (isdigit(token.front())){
+        numbers_.push(std::stod(token));
+    }
+}
+
+void s21::Calculator::BinaryFunc(std::string token) {
+//    double num1 = (op == U_MINUS || op == U_PLUS) ? 0 : pop(stack_n);
+    double num1{}, num2{};
+    num2 = numbers_.top();
+    numbers_.pop();
+    num1 = numbers_.top();
+    numbers_.pop();
+    if (token == "+") {numbers_.push(num1 + num2);}
+    if (token == "-") {numbers_.push(num1 - num2);}
+    if (token == "*") {numbers_.push(num1 * num2);}
+    if (token == "/") {numbers_.push(num1 / num2);}
+    if (token == "^") {numbers_.push(pow(num1, num2));}
+    if (token == "mod") {numbers_.push(fmod(num1, num2));}
 }
 
 

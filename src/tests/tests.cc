@@ -65,13 +65,30 @@ TEST_F(Calculator_test, expression_to_rpn_double) {
     calc.PrintRpnExpression();
 }
 
-TEST_F(Calculator_test, ParseOfDigit) {
+TEST_F(Calculator_test, CalculateRpnExpression) {
+//    std::string expression = "2.58e+1*sin(3.45)+sqrt(5)";
+//    std::string expression = "(2*((2+3)/5-(1+4))^2)";
+    std::string expression = "2^2^3";
+    double d{};
+    s21::Calculator calc(expression);
+    calc.ExpressionToRpn();
+    calc.PrintExpression();
+    cout << "________________" << endl;
+    cout << "23s*5q+" << endl;
+    calc.PrintRpnExpression();
+    cout << endl;
+    cout << "________________" << endl;
+    d = calc.CalculateRpnExpression();
+    cout << d << endl;
+}
+
+TEST_F(Calculator_test, ParseOfDigitFromExpression) {
 //    std::string expression = "25.58+89.47";
     std::string expression = "25.58e-1+89.47";
     double result{};
     size_t index = 0;
     s21::Calculator calc(expression);
-    result = calc.ParseOfDigit(index);
+    result = calc.ParseOfDigitFromExpression(index);
     cout << "________________" << endl;
     cout << result << endl;
     cout << index << endl;
