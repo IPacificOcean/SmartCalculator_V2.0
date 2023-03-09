@@ -22,7 +22,7 @@ TEST_F(Calculator_test, simple_expression_to_rpn) {
     std::string expression = "2+3*2-5/2^4";
 //    cout << expression.length() << endl;
 //    cout << "________________" << endl;
-    Calculator calc(expression);
+    s21::Calculator calc(expression);
     calc.ExpressionToRpn();
     calc.PrintExpression();
     cout << "________________" << endl;
@@ -34,7 +34,7 @@ TEST_F(Calculator_test, expression_to_rpn_brck) {
     std::string expression = "2*(2+3)/5-(1+4)^2";
 //    cout << expression.length() << endl;
 //    cout << "________________" << endl;
-    Calculator calc(expression);
+    s21:: Calculator calc(expression);
     calc.ExpressionToRpn();
     calc.PrintExpression();
     cout << "________________" << endl;
@@ -47,7 +47,7 @@ TEST_F(Calculator_test, expression_to_rpn_funck) {
 //    std::string expression = "2+2";
 //    cout << expression.length() << endl;
 //    cout << "________________" << endl;
-    Calculator calc(expression);
+    s21::Calculator calc(expression);
     calc.ExpressionToRpn();
     calc.PrintExpression();
     cout << "________________" << endl;
@@ -56,8 +56,8 @@ TEST_F(Calculator_test, expression_to_rpn_funck) {
 }
 
 TEST_F(Calculator_test, expression_to_rpn_double) {
-    std::string expression = "2.58*sin(3.45)+sqrt(5)";
-    Calculator calc(expression);
+    std::string expression = "2.58e+1*sin(3.45)+sqrt(5)";
+    s21::Calculator calc(expression);
     calc.ExpressionToRpn();
     calc.PrintExpression();
     cout << "________________" << endl;
@@ -70,7 +70,7 @@ TEST_F(Calculator_test, ParseOfDigit) {
     std::string expression = "25.58e-1+89.47";
     double result{};
     size_t index = 0;
-    Calculator calc(expression);
+    s21::Calculator calc(expression);
     result = calc.ParseOfDigit(index);
     cout << "________________" << endl;
     cout << result << endl;

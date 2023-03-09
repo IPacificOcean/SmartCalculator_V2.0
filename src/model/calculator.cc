@@ -1,12 +1,11 @@
 //
 // Created by Qyburn Bongo on 3/7/23.
 //
-//#include <cstdlib>
 #include <string>
 #include "calculator.h"
 
 
-void Calculator::ExpressionToRpn() {
+void s21::Calculator::ExpressionToRpn() {
     for (size_t i = 0; i < expression_.size(); ++i) {
         char c = expression_[i];
         if (c != ' ' && isdigit(c)) {
@@ -14,7 +13,7 @@ void Calculator::ExpressionToRpn() {
             rpn_expression_.push(std::to_string(d));
             --i;
         } else if (isalpha(c)) {
-            c = FuncIs(i);
+            c = CheckFuncIs(i);
             operators_.push(c);
         } else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '(' || c == ')' || c == '^') {
             ConditionsByPrecedence(c);
@@ -24,15 +23,15 @@ void Calculator::ExpressionToRpn() {
 }
 
 
-double Calculator::ParseOfDigit(size_t &index) {
+double s21::Calculator::ParseOfDigit(size_t &index) {
     std::size_t pos = index;
-    double digit {};
-    digit = std::stod (expression_.substr(pos), &pos);
+    double digit{};
+    digit = std::stod(expression_.substr(pos), &pos);
     index += pos;
     return digit;
 }
 
-void Calculator::ConditionsByPrecedence(char c) {
+void s21::Calculator::ConditionsByPrecedence(char c) {
     if (operators_.empty() || c == '(' || GetPrecedence(c) > GetPrecedence(operators_.top())) operators_.push(c);
     else if (c == ')') {
         while (operators_.top() != '(') {
@@ -47,7 +46,7 @@ void Calculator::ConditionsByPrecedence(char c) {
     }
 }
 
-void Calculator::PopFromStack() {
+void s21::Calculator::PopFromStack() {
     while (!operators_.empty()) {
         std::string op = {operators_.top()};
         rpn_expression_.push(op);
@@ -55,18 +54,18 @@ void Calculator::PopFromStack() {
     }
 }
 
-void Calculator::PrintRpnExpression() {
+void s21::Calculator::PrintRpnExpression() {
     std::queue<std::string> rpn_expression2 = rpn_expression_;
     while (!rpn_expression2.empty()) {
-        std::cout << rpn_expression2.front() ;
+        std::cout << rpn_expression2.front();
         rpn_expression2.pop();
     }
 }
 
-int Calculator::GetPrecedence(char c) const {
+int s21::Calculator::GetPrecedence(char c) const {
     int precedence;
-    if (c == '(')  precedence = 0;
-    else if (c == ')')  precedence = -1;
+    if (c == '(') precedence = 0;
+    else if (c == ')') precedence = -1;
     else if (c == '+' || c == '-') precedence = 1;
     else if (c == '*' || c == '/' || c == 'm') precedence = 2;
     else if (c == '^') precedence = 3;
@@ -74,13 +73,13 @@ int Calculator::GetPrecedence(char c) const {
     return precedence;
 }
 
-char Calculator::FuncIs(size_t &index) {
+char s21::Calculator::CheckFuncIs(size_t &index) {
     char symbol_func{};
     size_t next_symbol = index + 1;
     if (expression_[index] == 's' && expression_[next_symbol] == 'i') {
         index = index + 2;
         symbol_func = 's';
-        }
+    }
     if (expression_[index] == 'm') {
         index = index + 2;
         symbol_func = 'm';
