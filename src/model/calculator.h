@@ -42,7 +42,8 @@ public:
  */
     char CheckFuncIs(size_t &index);
 
-    void PopFromStack();
+    void PopFromStack(char c);
+    void PopFromStackEnd();
 
 /***
  * @brif сhecks what precedens of operators
@@ -57,11 +58,12 @@ public:
  */
     double ParseOfDigitFromExpression(size_t &index);
 
-    void GetDigitFromRpn(std::string token);
+    void GetDigitFromRpn(const std::string &token);
 
     double CalculateRpnExpression();
 
-    void BinaryFunc(std::string token);
+    void BinaryFunc(std::string &token);
+    void UnaryFunc(std::string &token);
 
 private:
     std::string expression_;

@@ -14,14 +14,15 @@ void s21::Calculator::ExpressionToRpn() {
             double d = ParseOfDigitFromExpression(i);
             rpn_expression_.push(std::to_string(d));
             --i;
-        } else if (isalpha(c)) {
+        } else if (isalpha(c) && c != 'm') {
             c = CheckFuncIs(i);
             operators_.push(c);
         } else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '(' || c == ')' || c == '^' || c == 'm') {
+            if (c == 'm') i += 2;
             ConditionsByPrecedence(c);
         }
     }
-    PopFromStack();
+    PopFromStackEnd();
 }
 
 double s21::Calculator::ParseOfDigitFromExpression(size_t &index) {
@@ -44,18 +45,27 @@ void s21::Calculator::ConditionsByPrecedence(char c) {
         }
         operators_.pop();
     } else {
-        PopFromStack();
+        PopFromStack(c);
         operators_.push(c);
     }
 }
 
-void s21::Calculator::PopFromStack() {
+void s21::Calculator::PopFromStack(char c) {
     while (!operators_.empty()) {
         if (operators_.top() == '(') {break;}
+        if (GetPrecedence(operators_.top()) < GetPrecedence(c)) { break;}
             std::string op = {operators_.top()};
             rpn_expression_.push(op);
             operators_.pop();
 
+    }
+}
+
+void s21::Calculator::PopFromStackEnd() {
+    while (!operators_.empty()) {
+        std::string op = {operators_.top()};
+        rpn_expression_.push(op);
+        operators_.pop();
     }
 }
 
@@ -84,10 +94,6 @@ char s21::Calculator::CheckFuncIs(size_t &index) {
     if (expression_[index] == 's' && expression_[next_symbol] == 'i') {
         index = index + 2;
         symbol_func = 's';
-    }
-    if (expression_[index] == 'm') {
-        index = index + 2;
-        symbol_func = 'm';
     }
     if (expression_[index] == 'c') {
         index = index + 2;
@@ -131,20 +137,22 @@ double s21::Calculator::CalculateRpnExpression() {
         std::string token = rpn_expression_.front();
         rpn_expression_.pop();
         GetDigitFromRpn(token);
-        if (token == "+" || token == "-" || token == "*" || token == "/" || token == "^" || token == "mod"){
+        if (token == "+" || token == "-" || token == "*" || token == "/" || token == "^" || token == "m"){
             BinaryFunc(token);
+        } else if (isalpha(token.front())) {
+            UnaryFunc(token);
         }
     }
-    return result = numbers_.top(); ;
+    return result = numbers_.top();
 }
 
-void s21::Calculator::GetDigitFromRpn(std::string token) {
+void s21::Calculator::GetDigitFromRpn( const std::string &token) {
     if (isdigit(token.front())){
         numbers_.push(std::stod(token));
     }
 }
 
-void s21::Calculator::BinaryFunc(std::string token) {
+void s21::Calculator::BinaryFunc(std::string &token) {
 //    double num1 = (op == U_MINUS || op == U_PLUS) ? 0 : pop(stack_n);
     double num1{}, num2{};
     num2 = numbers_.top();
@@ -156,8 +164,24 @@ void s21::Calculator::BinaryFunc(std::string token) {
     if (token == "*") {numbers_.push(num1 * num2);}
     if (token == "/") {numbers_.push(num1 / num2);}
     if (token == "^") {numbers_.push(pow(num1, num2));}
-    if (token == "mod") {numbers_.push(fmod(num1, num2));}
+    if (token == "m") {numbers_.push(fmod(num1, num2));}
 }
+
+void s21::Calculator::UnaryFunc(std::string &token) {
+    double num{};
+    num = numbers_.top();
+    numbers_.pop();
+    if (token == "s") {numbers_.push(sin(num));}
+    if (token == "c") {numbers_.push(cos(num));}
+    if (token == "t") {numbers_.push(tan(num));}
+    if (token == "l") {numbers_.push(log(num));}
+    if (token == "L") {numbers_.push(log10(num));}
+    if (token == "S") {numbers_.push(asin(num));}
+    if (token == "C") {numbers_.push(acos(num));}
+    if (token == "T") {numbers_.push(atan(num));}
+    if (token == "q") {numbers_.push(sqrt(num));}
+}
+
 
 
 
