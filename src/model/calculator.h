@@ -44,6 +44,7 @@ public:
 
     void PopFromStack(char c);
     void PopFromStackEnd();
+    void PushRpnExpression();
 
 /***
  * @brif сhecks what precedens of operators

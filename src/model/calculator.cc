@@ -40,9 +40,7 @@ void s21::Calculator::ConditionsByPrecedence(char c) {
         operators_.push(c);
     else if (c == ')') {
         while (operators_.top() != '(') {
-            std::string op = {operators_.top()};
-            rpn_expression_.push(op);
-            operators_.pop();
+            PushRpnExpression();
         }
         operators_.pop();
     } else {
@@ -55,19 +53,20 @@ void s21::Calculator::PopFromStack(char c) {
     while (!operators_.empty()) {
         if (operators_.top() == '(') {break;}
         if (GetPrecedence(operators_.top()) < GetPrecedence(c)) { break;}
-            std::string op = {operators_.top()};
-            rpn_expression_.push(op);
-            operators_.pop();
-
+        PushRpnExpression();
     }
 }
 
 void s21::Calculator::PopFromStackEnd() {
     while (!operators_.empty()) {
-        std::string op = {operators_.top()};
-        rpn_expression_.push(op);
-        operators_.pop();
+        PushRpnExpression();
     }
+}
+
+void s21::Calculator::PushRpnExpression() {
+    std::string op = {operators_.top()};
+    rpn_expression_.push(op);
+    operators_.pop();
 }
 
 void s21::Calculator::PrintRpnExpression() {
@@ -189,6 +188,7 @@ void s21::Calculator::UnaryMinusPlus(char c, size_t index) {
         (c == '+' && (index == 0 || expression_[index - 1] == '(')))
         rpn_expression_.push("0.0");
 }
+
 
 
 
