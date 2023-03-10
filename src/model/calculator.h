@@ -64,6 +64,7 @@ public:
 
     void BinaryFunc(std::string &token);
     void UnaryFunc(std::string &token);
+    void UnaryMinusPlus(char c, size_t index);
 
 private:
     std::string expression_;

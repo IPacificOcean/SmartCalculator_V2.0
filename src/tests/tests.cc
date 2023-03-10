@@ -71,8 +71,9 @@ TEST_F(Calculator_test, CalculateRpnExpression) {
 //    std::string expression = "2^2^3";
 //    std::string expression = "sqrt(4)+9.235+2^3^sin(cos(10))-564-sqrt(25)+28.6*35mod99^2^3";
 //    std::string expression = "1+2+3+(3+5)*2+3/(1-4)^3*(3^((2+1)+1))/(((1)))+2";
-    std::string expression = "5+(1+2)*4*cos(2*7.5-2)+sin(cos(2*5))-sqrt(2^log(5-1))+ln(55)";
+    std::string expression = "5+(-1+2)*4*cos(-2*7.5-2)+sin(cos(2*5))-sqrt(2^log(5-1))+ln(55)";
 //    std::string expression = "3+(3+5)*2+3/(1-4)^3*2";
+//    std::string expression = "-1+(-2+5)";
     double d{};
     s21::Calculator calc(expression);
     calc.ExpressionToRpn();

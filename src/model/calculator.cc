@@ -19,6 +19,7 @@ void s21::Calculator::ExpressionToRpn() {
             operators_.push(c);
         } else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '(' || c == ')' || c == '^' || c == 'm') {
             if (c == 'm') i += 2;
+            UnaryMinusPlus(c, i);
             ConditionsByPrecedence(c);
         }
     }
@@ -143,6 +144,7 @@ double s21::Calculator::CalculateRpnExpression() {
             UnaryFunc(token);
         }
     }
+    if (isfinite(result)) error = 1;// TODO something
     return result = numbers_.top();
 }
 
@@ -180,6 +182,12 @@ void s21::Calculator::UnaryFunc(std::string &token) {
     if (token == "C") {numbers_.push(acos(num));}
     if (token == "T") {numbers_.push(atan(num));}
     if (token == "q") {numbers_.push(sqrt(num));}
+}
+
+void s21::Calculator::UnaryMinusPlus(char c, size_t index) {
+    if ((c == '-' && (index == 0 || expression_[index - 1] == '(')) ||
+        (c == '+' && (index == 0 || expression_[index - 1] == '(')))
+        rpn_expression_.push("0.0");
 }
 
 
