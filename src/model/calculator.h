@@ -61,7 +61,7 @@ public:
 
     void GetDigitFromRpn(const std::string &token);
 
-    double CalculateRpnExpression();
+    double Calculate();
 
     void BinaryFunc(std::string &token);
     void UnaryFunc(std::string &token);

@@ -130,7 +130,7 @@ char s21::Calculator::CheckFuncIs(size_t &index) {
     return symbol_func;
 }
 
-double s21::Calculator::CalculateRpnExpression() {
+double s21::Calculator::Calculate() {
     double result = 0.0;
     int error = 0;
     while (!rpn_expression_.empty()) {
