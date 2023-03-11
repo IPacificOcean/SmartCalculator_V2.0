@@ -5,6 +5,7 @@
 #include <gtest/gtest.h>
 #include <iostream>
 #include "../model/calculator.cc"
+#include "../model/validation.cc"
 
 using std::cout;
 using std::endl;
@@ -70,10 +71,11 @@ TEST_F(Calculator_test, Calculate) {
 //    std::string expression = "(2*((2+3)/5-(1+4))^2)mod7";
 //    std::string expression = "2^2^3";
 //    std::string expression = "sqrt(4)+9.235+2^3^sin(cos(10))-564-sqrt(25)+28.6*35mod99^2^3";
-//    std::string expression = "1+2+3+(3+5)*2+3/(1-4)^3*(3^((2+1)+1))/(((1)))+2";
-    std::string expression = "-5+(-1+2)*4*cos(-2*7.5-2)+sin(cos(2*5))-sqrt(2^log(5-1))+ln(55)";
+    std::string expression = "5+(1+2)*4*(1)*cos(2*7.5-2)+sin(cos(2*5))-sqrt(2^log(5-1))+ln(55)";
+//    std::string expression = "-5+(-1+2)*4*cos(-2*7.5-2)+sin(cos(2*5))-sqrt(2^log(5-1))+ln(55)";
 //    std::string expression = "3+(3+5)*2+3/(1-4)^3*2";
 //    std::string expression = "-1+(-2+5)";
+//    std::string expression = "0";
     double d{};
     s21::Calculator calc(expression);
     calc.ExpressionToRpn();
@@ -97,6 +99,20 @@ TEST_F(Calculator_test, ParseOfDigitFromExpression) {
     cout << "________________" << endl;
     cout << result << endl;
     cout << index << endl;
+}
+
+TEST_F(Calculator_test, IzValid) {
+//    std::string expression = "25.58+89.47";
+// не отловил (1) перед cos
+// добавить е
+    std::string expression = "5+(1+2)*4*(1)cos(2*7.5-2)+sin(cos(2*5))-sqrt(2^log(5-1))+ln(55)";
+    bool error{};
+
+    s21::Validation valid(expression);
+    error = valid.IsValid();
+    cout << "________________" << endl;
+    cout << error << endl;
+
 }
 
 
