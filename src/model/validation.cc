@@ -2,7 +2,7 @@
 // Created by Qyburn Bongo on 3/11/23.
 //
 #include <string>
-#include  <cstring>
+//#include  <cstring>
 
 #include "validation.h"
 #define success  false;
@@ -24,7 +24,6 @@ bool s21::Validation::CheckNumber(size_t &index) const {
     if (count_dot > 1) err = failure;
     return err;
 }
-
 
 bool s21::Validation::IsValid() const {
     bool error = success;
@@ -59,15 +58,11 @@ bool s21::Validation::IsValid() const {
         if (current == '.' && (!isdigit(prev) || !isdigit(next))) error = failure;
         if (current == '(' && next == ')') error = failure;
         if (prev == '(' && !isdigit(current) && next == ')') error = failure;
-        if ((current == '(' || isdigit(current)) && prev == ')' ) error = failure;
+        if ((current == '(' || isdigit(current)) && prev == ')') error = failure;
         if (i != last) {
-        if ((current == ')' ) && (!strspn(&next, check) && next != ')')) error = failure;
-        if ((isdigit(current) ) && (!strspn(&next, check) && next != ')' && !isdigit(next))) error = failure;
+            if ((current == ')') && (!strspn(&next, check) && next != ')')) error = failure;
+            if ((isdigit(current)) && (!strspn(&next, check) && next != ')' && !isdigit(next))) error = failure;
         }
-//        if ((current == ')' || isdigit(current)) && (!strspn(&next, check) && !isdigit(next) && next != ')')) error = failure;
     }
     return error;
-
 }
-
-//        std::cout << prev <<  std::endl;

@@ -103,7 +103,6 @@ TEST_F(Calculator_test, ParseOfDigitFromExpression) {
 
 TEST_F(Calculator_test, IzValid) {
 //    std::string expression = "25.58+89.47";
-// не отловил (1) перед cos
     std::string expression = "(5)+(1+2)*4*(-12)+cos(2*7.5-2)+sin(cos(2*5))-sqrt(2^log(5-1))+(1)+ln(5)+(1)";
 //    std::string expression = "5.55e+1+sin(-2.88)";
 //    std::string expression = "1+(1)+sin(-2)+1+(1)+1";
