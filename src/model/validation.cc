@@ -57,9 +57,14 @@ bool s21::Validation::IsValid() const {
             error = failure;
         }
         if (current == '.' && (!isdigit(prev) || !isdigit(next))) error = failure;
-//        if (first || (current == '.' && (!isdigit(prev) || !isdigit(next)))) error = failure;
         if (current == '(' && next == ')') error = failure;
         if (prev == '(' && !isdigit(current) && next == ')') error = failure;
+        if ((current == '(' || isdigit(current)) && prev == ')' ) error = failure;
+        if (i != last) {
+        if ((current == ')' ) && (!strspn(&next, check) && next != ')')) error = failure;
+        if ((isdigit(current) ) && (!strspn(&next, check) && next != ')' && !isdigit(next))) error = failure;
+        }
+//        if ((current == ')' || isdigit(current)) && (!strspn(&next, check) && !isdigit(next) && next != ')')) error = failure;
     }
     return error;
 
