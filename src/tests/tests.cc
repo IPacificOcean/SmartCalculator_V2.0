@@ -105,9 +105,8 @@ TEST_F(Calculator_test, IzValid) {
 //    std::string expression = "25.58+89.47";
 // не отловил (1) перед cos
 // добавить е
-// добавить вторую .
 //    std::string expression = "5(1+2)*4*(1)cos(2*7.5-2)+sin(cos(2*5))-sqrt(2^log(5-1))+ln(5)";
-    std::string expression = "5.55+sin(-2.88)";
+    std::string expression = "5.55e+1+sin(-2.88)";
 //    std::string expression = "";
 //    std::string expression = "0";
 //    std::string expression = " ";

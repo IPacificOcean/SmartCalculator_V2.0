@@ -9,25 +9,11 @@
 #define failure  true;
 
 
-//bool s21::Validation::check_number() const {
-//    int count_dot{};
-//    bool err = success;
-//    for (auto &c: expression_) {
-//        if (isdigit(c) || ((c == '.'))) {
-//            if (c == '.') count_dot++;
-//        } else {
-//            break;
-//        }
-//    }
-//        if (count_dot > 1) err = failure;
-//        return err;
-//    }
-
 bool s21::Validation::CheckNumber(size_t &index) const {
     bool err = success;
     int count_dot{};
     for (auto i = index; i < expression_.size(); ++i) {
-    char c = expression_[i];
+        char c = expression_[i];
         if (isdigit(c) || ((c == '.'))) {
             if (c == '.') count_dot++;
         } else {
@@ -57,6 +43,7 @@ bool s21::Validation::IsValid() const {
             next = expression_[i + 1];
         }
         if (i != 0) prev = expression_[i - 1];
+        if (current == 'e' && !isdigit(prev)) error = failure;
         if (strspn(&current, check) && strspn(&prev, check)) error = failure;
         if (current == '(') brck_open_count++;
         if (current == ')') brck_close_count++;
