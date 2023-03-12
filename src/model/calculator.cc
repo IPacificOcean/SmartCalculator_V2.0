@@ -10,14 +10,14 @@
 void s21::Calculator::ExpressionToRpn() {
     for (size_t i = 0; i < expression_.size(); ++i) {
         char c = expression_[i];
-        if (c != ' ' && isdigit(c)) {
+        if (c != ' ' && isdigit(c)) { // TODO Is it necessary to check spaces?
             double d = ParseOfDigitFromExpression(i);
             rpn_expression_.push(std::to_string(d));
             --i;
-        } else if (isalpha(c) && c != 'm') {
+        } else if (isalpha(c) && c != ' ' && c != 'm') {
             c = CheckFuncIs(i);
             operators_.push(c);
-        } else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '(' || c == ')' || c == '^' || c == 'm') {
+        } else if (c != ' ' && (c == '+' || c == '-' || c == '*' || c == '/' || c == '(' || c == ')' || c == '^' || c == 'm')) {
             if (c == 'm') i += 2;
             UnaryMinusPlus(c, i);
             ConditionsByPrecedence(c);

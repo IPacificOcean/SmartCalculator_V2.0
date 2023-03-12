@@ -67,11 +67,11 @@ TEST_F(Calculator_test, expression_to_rpn_double) {
 }
 
 TEST_F(Calculator_test, Calculate) {
-//    std::string expression = "2.58e+1*sin(3.45)+sqrt(5)";
+    std::string expression = "2.58e+1 * sin( 3.45) + sqrt(5)";
 //    std::string expression = "(2*((2+3)/5-(1+4))^2)mod7";
 //    std::string expression = "2^2^3";
 //    std::string expression = "sqrt(4)+9.235+2^3^sin(cos(10))-564-sqrt(25)+28.6*35mod99^2^3";
-    std::string expression = "5+(1+2)*4*(1)*cos(2*7.5-2)+sin(cos(2*5))-sqrt(2^log(5-1))+ln(55)";
+//    std::string expression = "5+(1+2)*4*(1)*cos(2*7.5-2)+sin(cos(2*5))-sqrt(2^log(5-1))+ln(55)";
 //    std::string expression = "-5+(-1+2)*4*cos(-2*7.5-2)+sin(cos(2*5))-sqrt(2^log(5-1))+ln(55)";
 //    std::string expression = "3+(3+5)*2+3/(1-4)^3*2";
 //    std::string expression = "-1+(-2+5)";
@@ -105,7 +105,12 @@ TEST_F(Calculator_test, IzValid) {
 //    std::string expression = "25.58+89.47";
 // не отловил (1) перед cos
 // добавить е
-    std::string expression = "5+(1+2)*4*(1)cos(2*7.5-2)+sin(cos(2*5))-sqrt(2^log(5-1))+ln(55)";
+// добавить вторую .
+//    std::string expression = "5(1+2)*4*(1)cos(2*7.5-2)+sin(cos(2*5))-sqrt(2^log(5-1))+ln(5)";
+    std::string expression = "5.55+sin(-2.88)";
+//    std::string expression = "";
+//    std::string expression = "0";
+//    std::string expression = " ";
     bool error{};
 
     s21::Validation valid(expression);

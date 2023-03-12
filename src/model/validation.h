@@ -20,6 +20,7 @@ namespace s21 {
 
 
         bool IsValid() const;
+       bool CheckNumber(size_t &index) const ;
 
     private:
 
