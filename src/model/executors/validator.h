@@ -8,26 +8,18 @@
 #include <string>
 
 
+#include <string>
+
 namespace s21 {
 
-    class Validation {
-
+    class Validator {
     public:
 
-        explicit Validation(const std::string &expression) : expression_(expression) {}
-
-        ~Validation() = default;
-
-
-        bool IsNotValid() const;
-
+        bool IsNotValid(const std::string &expression) const;
 
     private:
 
-        bool CheckNumber(size_t &index) const;
-        std::string expression_;
-
+        bool CheckNumber(size_t &index, const std::string &expression) const;
     };
-}
-
+}  // namespace s21
 #endif //GOOGLE_TESTS_VALIDATION_H
