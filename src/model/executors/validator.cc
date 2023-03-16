@@ -4,7 +4,7 @@
 #include <string>
 //#include  <cstring>
 
-#include "validation.h"
+#include "validator.h"
 #define success  false;
 #define failure  true;
 
@@ -25,7 +25,7 @@ bool s21::Validation::CheckNumber(size_t &index) const {
     return err;
 }
 
-bool s21::Validation::IsValid() const {
+bool s21::Validation::IsNotValid() const {
     bool error = success;
     int brck_open_count{}, brck_close_count{};
     char check[] = "+-*/^m";

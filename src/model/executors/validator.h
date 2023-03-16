@@ -19,7 +19,7 @@ namespace s21 {
         ~Validation() = default;
 
 
-        bool IsValid() const;
+        bool IsNotValid() const;
 
 
     private:
