@@ -11,12 +11,12 @@
 #include <string>
 #include <vector>
 
-//#include "../view/data/data_credit.h"
-//#include "../view/data/data_deposit.h"
-//#include "../view/data/data_plot.h"
+#include "../data/data_credit.h"
+#include "../data/data_deposit.h"
+#include "../data/data_plot.h"
 #include "../executors/calculator.h"
-//#include "../executors/calculator_plot.h"
-//#include "../executors/parser.h"
+#include "../executors/plot.h"
+#include "../executors/parser.h"
 #include "../executors/validator.h"
 
 namespace s21 {
