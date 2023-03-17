@@ -1,5 +1,5 @@
 #include "calculator.h"
-//#include "mainwindow.h"
+//#include "../controller/controller.h"
 #include "ui_calculator.h"
 #include <QMessageBox>
 #include "credit.h"
@@ -78,19 +78,30 @@ void Calculator::digit_nambers()
 
 void Calculator::on_pushButton_eq_clicked()
 {
-        QString value;
-        value = ui->lineEdit->text();
-        double result;
-        QByteArray str_bit = value.toLocal8Bit();
-        char *res_str = str_bit.data();
-        int check = launch(res_str, &result);
-        if (!check) {
-           ui->lineEdit->setText("ERROR");
-        } else {
-           value = QString::number(result, 'g', 16);
-           ui->lineEdit->setText(value);
-        }
+//        QString value;
+//        value = ui->lineEdit->text();
+//        double result;
+//        QByteArray str_bit = value.toLocal8Bit();
+//        char *res_str = str_bit.data();
+//        int check = launch(res_str, &result);
+//        if (!check) {
+//           ui->lineEdit->setText("ERROR");
+//        } else {
+//           value = QString::number(result, 'g', 16);
+//           ui->lineEdit->setText(value);
+//        }
 
+        double res = 0;
+
+         QString inputStr = ui->lineEdit->text();
+
+         try {
+           res =  controller.Calculation(inputStr);
+           inputStr = QString::number(res, 'g', 15);
+           ui->lineEdit->setText(inputStr);
+         } catch (...) {
+           ui->lineEdit->setText("invalid input");
+         }
 }
 
 
@@ -124,39 +135,39 @@ double Calculator::doubleSpinBox_Xmin() {
 
 void Calculator::on_pushButton_graph_clicked()
 {
-    ui->widget->clearGraphs();
-    QString new_label = ui->lineEdit->text();
-       QString value, origin_string;
-       h = 0.01;
-       xBegin = doubleSpinBox_Xmin();
-       xEnd = doubleSpinBox_Xmax();
-       ui->widget->xAxis->setRange(xBegin, xEnd);
-       ui->widget->yAxis->setRange(xBegin, xEnd);
-       Y = 0;
-   //    N = (xEnd - xBegin)/h + 2;
+//    ui->widget->clearGraphs();
+//    QString new_label = ui->lineEdit->text();
+//       QString value, origin_string;
+//       h = 0.01;
+//       xBegin = doubleSpinBox_Xmin();
+//       xEnd = doubleSpinBox_Xmax();
+//       ui->widget->xAxis->setRange(xBegin, xEnd);
+//       ui->widget->yAxis->setRange(xBegin, xEnd);
+//       Y = 0;
+//   //    N = (xEnd - xBegin)/h + 2;
 
-       for(X = xBegin; X <= xEnd; X+= h) {
-           if (fabs(X) < EPS) X = 0;
-           x.push_back(X);
-//           qDebug()<<X;
-           origin_string = new_label;
+//       for(X = xBegin; X <= xEnd; X+= h) {
+//           if (fabs(X) < EPS) X = 0;
+//           x.push_back(X);
+////           qDebug()<<X;
+//           origin_string = new_label;
 
-           value = origin_string.replace("x",('(' + QString::number(X) + ')'));
-           QByteArray str_bit = value.toLocal8Bit();
-//           qDebug()<<value;
-           char *res_str = str_bit.data();
-           int check = launch(res_str, &Y);
-           if (!check) {
-              ui->lineEdit->setText("ERROR");
-           } else {
-              y.push_back(Y);
-           }
-       }
-       ui->widget->addGraph();
-       ui->widget->graph(0)->setData(x,y);
-       ui->widget->replot();
-       x.clear();  //  для очистки
-       y.clear();
+//           value = origin_string.replace("x",('(' + QString::number(X) + ')'));
+//           QByteArray str_bit = value.toLocal8Bit();
+////           qDebug()<<value;
+//           char *res_str = str_bit.data();
+//           int check = launch(res_str, &Y);
+//           if (!check) {
+//              ui->lineEdit->setText("ERROR");
+//           } else {
+//              y.push_back(Y);
+//           }
+//       }
+//       ui->widget->addGraph();
+//       ui->widget->graph(0)->setData(x,y);
+//       ui->widget->replot();
+//       x.clear();  //  для очистки
+//       y.clear();
 
 }
 

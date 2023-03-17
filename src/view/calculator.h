@@ -6,12 +6,14 @@
 #include <qvector.h>
 #include <string.h>
 
+#include "../controller/controller.h"
+
 #define AVERAGE_DAYS_IN_MONTH 30.416666666666667851
 #define NDFL 13/100
 
-extern "C" {
-#include "../../s21_smart_calc.h"
-}
+//extern "C" {
+//#include "../../s21_smart_calc.h"
+//}
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Calculator; }
@@ -44,6 +46,7 @@ private slots:
 
 private:
     Ui::Calculator *ui;
+    s21::Controller controller;
     double xBegin, xEnd, h, X, Y;
     int N;
 

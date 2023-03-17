@@ -26,9 +26,7 @@ namespace s21 {
 //         */
         double Calculation(QString &expression) {
             double result{};
-
             std::string expressionToString = expression.toStdString();
-
             try {
                 result = model_.Calculation(expressionToString);
             } catch (...) {
