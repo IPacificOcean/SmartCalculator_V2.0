@@ -42,6 +42,8 @@
 *.idb
 *.pdb
 .clang-format
+tests
+.qt_clangd
 #CMakeLists.txt
 cmake-build-debug
 .gitkeep
@@ -54,3 +56,5 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+/src/QT/build-s21_smart_calc-Desktop_x86_darwin_generic_mach_o_64bit-Debug/
+/src/QT/build-s21_smart_calc-Desktop_x86_darwin_generic_mach_o_64bit-Debug/
