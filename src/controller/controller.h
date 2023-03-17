@@ -14,6 +14,8 @@
 #include <QString>
 #include <QVector>
 #include <vector>
+#include <utility>
+#include <string.h>
 
 namespace s21 {
 
@@ -46,26 +48,26 @@ namespace s21 {
 //         */
 //  double Calculation(std::string &expression, double &x) { return 0; }
 
-//        /**
-//         * Выполняет расчет для отрисовки графика
-//         * @param data_plot класс который содержит данные для рсчета
-//         * @return пару с 2 векторами координа х, у для построения графика
-//         */
-//        std::pair<QVector < double>, QVector<double>> PlotCalculation(
-//        const DataPlot &data_plot
-//        ) {
+        /**
+         * Выполняет расчет для отрисовки графика
+         * @param data_plot класс который содержит данные для рсчета
+         * @return пару с 2 векторами координа х, у для построения графика
+         */
+        std::pair<QVector < double>, QVector<double>> PlotCalculation(
+        const DataPlot &data_plot
+        ) {
 
-//            std::pair<QVector < double>, QVector < double >> castQvector;
+            std::pair<QVector < double>, QVector < double >> castQvector;
 
-//            try {
-//                std::pair<std::vector<double>, std::vector<double>> temp = model_.PlotCalculation(data_plot);
-//                castQvector.first = QVector<double>(temp.first.begin(), temp.first.end());
-//                castQvector.second = QVector<double>(temp.second.begin(), temp.second.end());
-//            } catch (...) {
-//            }
+            try {
+                std::pair<std::vector<double>, std::vector<double>> temp = model_.PlotCalculation(data_plot);
+                castQvector.first = QVector<double>(temp.first.begin(), temp.first.end());
+                castQvector.second = QVector<double>(temp.second.begin(), temp.second.end());
+            } catch (...) {
+            }
 
-//            return castQvector;
-//        }
+            return castQvector;
+        }
 
 //        /**
 //         * Расчитывает платеж по кредиту за период

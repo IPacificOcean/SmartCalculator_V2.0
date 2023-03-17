@@ -10,6 +10,7 @@
 #include <queue>
 #include <string>
 #include <vector>
+#include <utility>
 
 #include "../data/data_credit.h"
 #include "../data/data_deposit.h"
@@ -46,30 +47,30 @@ namespace s21 {
 
 ////        double Calculation(std::string &expression, double &x) { return 0; }
 
-//        /**
-//         *
-//         * @param data_plot
-//         * @return
-//         */
-//        std::pair<std::vector<double>, std::vector<double>> PlotCalculation(
-//                const DataPlot &data_plot) {
-//            if (validator_.IsNotValid(data_plot.expression_)) {
-//                throw std::invalid_argument("Invalid input");
-//            }
+        /**
+         *
+         * @param data_plot
+         * @return
+         */
+        std::pair<std::vector<double>, std::vector<double>> PlotCalculation(
+                const DataPlot &data_plot) {
+            if (validator_.IsNotValid(data_plot.expression_)) {
+                throw std::invalid_argument("Invalid input");
+            }
 
-//            std::list<std::string> rpn_expression =
-//                    parser_.GetRpn(data_plot.expression_);
+            std::list<std::string> rpn_expression =
+                    parser_.GetRpn(data_plot.expression_);
 
-//            std::pair<std::vector<double>, std::vector<double>> res;
+            std::pair<std::vector<double>, std::vector<double>> res;
 
-//            try {
-//                res = calculator_plot_.PlotCalculation(data_plot, rpn_expression);
-//            } catch (...) {
-//                throw;
-//            }
+            try {
+                res = calculator_plot_.PlotCalculation(data_plot, rpn_expression);
+            } catch (...) {
+                throw;
+            }
 
-//            return res;
-//        }
+            return res;
+        }
 
 //        DataCredit CreditCalculation(DataCredit &data_credit);
 
@@ -79,7 +80,7 @@ namespace s21 {
         Validator validator_;
         Parser parser_;
         Calculator calculator_;
-//        CalculatorPlot calculator_plot_;
+        CalculatorPlot calculator_plot_;
     };
 
 }  // namespace s21

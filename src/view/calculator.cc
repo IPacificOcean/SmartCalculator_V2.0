@@ -1,7 +1,7 @@
 #include "calculator.h"
-//#include "../controller/controller.h"
 #include "ui_calculator.h"
 #include <QMessageBox>
+#include <QDebug>
 #include "credit.h"
 #include "debit.h"
 
@@ -168,6 +168,27 @@ void Calculator::on_pushButton_graph_clicked()
 //       ui->widget->replot();
 //       x.clear();  //  для очистки
 //       y.clear();
+
+    ui->widget->clearGraphs();
+//     h = ui->lineEdit_step->text().toDouble();
+     xBegin = doubleSpinBox_Xmin();
+     xEnd = doubleSpinBox_Xmax();
+      qDebug()<<xBegin;
+      qDebug()<<xEnd;
+     s21::DataPlot data_plot_input(ui->lineEdit->text().toStdString(), xBegin, xEnd);
+     std::pair<QVector<double>, QVector<double>> data_plot;
+
+     ui->widget->xAxis->setRange(data_plot_input.x_begin_, data_plot_input.x_end_);
+     ui->widget->yAxis->setRange(data_plot_input.x_begin_, data_plot_input.x_end_);
+//     ui->widget->yAxis->setRange(ui->lineEdit_y_min->text().toDouble(), ui->lineEdit_y_max->text().toDouble());
+     try {
+       data_plot = controller.PlotCalculation(data_plot_input);
+       ui->widget->addGraph();
+       ui->widget->graph(0)->addData(data_plot.first, data_plot.second);
+       ui->widget->replot();
+     } catch (...) {
+       ui->lineEdit->setText("invalid parametr");
+     }
 
 }
 

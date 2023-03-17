@@ -6,6 +6,10 @@
 #define GOOGLE_TESTS_PLOT_H
 
 #include <list>
+#include <utility>
+#include <vector>
+#include <stack>
+#include <string.h>
 
 #include "../data/data_plot.h"
 #include "calculator_exec.h"

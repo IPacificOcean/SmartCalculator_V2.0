@@ -5,6 +5,8 @@
 #include "qcustomplot.h"
 #include <qvector.h>
 #include <string.h>
+#include <utility>
+
 
 #include "../controller/controller.h"
 
