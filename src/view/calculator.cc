@@ -2,6 +2,9 @@
 #include "ui_calculator.h"
 #include <QMessageBox>
 #include <QDebug>
+#include <QChar>
+#include <cctype>
+#include <locale>
 #include "credit.h"
 #include "debit.h"
 
@@ -78,21 +81,7 @@ void Calculator::digit_nambers()
 
 void Calculator::on_pushButton_eq_clicked()
 {
-//        QString value;
-//        value = ui->lineEdit->text();
-//        double result;
-//        QByteArray str_bit = value.toLocal8Bit();
-//        char *res_str = str_bit.data();
-//        int check = launch(res_str, &result);
-//        if (!check) {
-//           ui->lineEdit->setText("ERROR");
-//        } else {
-//           value = QString::number(result, 'g', 16);
-//           ui->lineEdit->setText(value);
-//        }
-
-        double res = 0;
-
+         double res = 0;
          QString inputStr = ui->lineEdit->text();
 
          try {
@@ -119,9 +108,25 @@ void Calculator::on_pushButton_del_clicked()
 
 void Calculator::on_pushButton_clear_clicked()
 {
+
+if (!ui->lineEdit->text().isEmpty()) {
     QString value = ui->lineEdit->text();
-    value.chop(1);
+
+    if (((value.data()[value.size() -1]) == '(') && ((value.data()[value.size() -2]).isLetter())){
+        if ((value.data()[value.size() -3]) == 'l') {
+            value.chop(3);
+        } else if ((value.data()[value.size() -5]).isLetter()) {
+            value.chop(5);
+        } else {
+            value.chop(4);
+        }
+    } else if (value.back() == 'd') {
+        value.chop(3);
+    } else {
+        value.chop(1);
+        }
     ui->lineEdit->setText(value);
+}
 }
 
 double Calculator::doubleSpinBox_Xmax() {
@@ -170,11 +175,8 @@ void Calculator::on_pushButton_graph_clicked()
 //       y.clear();
 
     ui->widget->clearGraphs();
-//     h = ui->lineEdit_step->text().toDouble();
      xBegin = doubleSpinBox_Xmin();
      xEnd = doubleSpinBox_Xmax();
-      qDebug()<<xBegin;
-      qDebug()<<xEnd;
      s21::DataPlot data_plot_input(ui->lineEdit->text().toStdString(), xBegin, xEnd);
      std::pair<QVector<double>, QVector<double>> data_plot;
 
@@ -213,3 +215,4 @@ void Calculator::on_pushButton_debit_clicked()
     window.exec();
 }
 
+//qDebug()<<xEnd;
