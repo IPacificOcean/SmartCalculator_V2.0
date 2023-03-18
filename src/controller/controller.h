@@ -26,27 +26,8 @@ namespace s21 {
 //         * @param expression строка с математическим выражением в прямой форме
 //         * @return результат расчета
 //         */
-        double Calculation(QString &expression) {
-            double result{};
-            std::string expressionToString = expression.toStdString();
-            try {
-                result = model_.Calculation(expressionToString);
-            } catch (...) {
-                throw std::invalid_argument("Invalid input");
-            }
-            return result;
-        }
+        double Calculation(QString &expression);
 
-
-
-
-//        /**
-//         * Выполняет расчет выражения
-//         * @param expression строка с математическим выражением в прямой форме
-//         * @param x значение, если выражение пришло в виде функции
-//         * @return результат расчета
-//         */
-//  double Calculation(std::string &expression, double &x) { return 0; }
 
         /**
          * Выполняет расчет для отрисовки графика
@@ -55,19 +36,7 @@ namespace s21 {
          */
         std::pair<QVector < double>, QVector<double>> PlotCalculation(
         const DataPlot &data_plot
-        ) {
-
-            std::pair<QVector < double>, QVector < double >> castQvector;
-
-            try {
-                std::pair<std::vector<double>, std::vector<double>> temp = model_.PlotCalculation(data_plot);
-                castQvector.first = QVector<double>(temp.first.begin(), temp.first.end());
-                castQvector.second = QVector<double>(temp.second.begin(), temp.second.end());
-            } catch (...) {
-            }
-
-            return castQvector;
-        }
+        );
 
 //        /**
 //         * Расчитывает платеж по кредиту за период

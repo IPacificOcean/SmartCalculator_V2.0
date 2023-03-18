@@ -23,7 +23,7 @@ double s21::Calculator::Calculate(std::list<std::string> &rpn_expression) {
     }
 
     result = numbers.top();
-    if (!isfinite(result)) throw std::invalid_argument("value is infinite");
+    if (!isfinite(result)) throw std::invalid_argument("value is infinite or nan");
     return result;
 }
 

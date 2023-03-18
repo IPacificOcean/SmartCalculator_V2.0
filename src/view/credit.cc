@@ -11,6 +11,7 @@ Credit::Credit(QWidget *parent) :
     ui->lineEdit_sum_credit->setValidator(new QDoubleValidator(this));
     ui->lineEdit_limit->setValidator(new QDoubleValidator(this));
     ui->lineEdit_percent->setValidator(new QDoubleValidator(this));
+    ui->annuit->setChecked(true);
 }
 
 Credit::~Credit()

@@ -4,7 +4,7 @@
 #include <QDebug>
 #include <QChar>
 #include <cctype>
-#include <locale>
+#include <stdexcept>
 #include "credit.h"
 #include "debit.h"
 
@@ -88,8 +88,8 @@ void Calculator::on_pushButton_eq_clicked()
            res =  controller.Calculation(inputStr);
            inputStr = QString::number(res, 'g', 15);
            ui->lineEdit->setText(inputStr);
-         } catch (...) {
-           ui->lineEdit->setText("invalid input");
+         } catch (std::exception& e) {
+           ui->lineEdit->setText(e.what());
          }
 }
 
@@ -108,7 +108,6 @@ void Calculator::on_pushButton_del_clicked()
 
 void Calculator::on_pushButton_clear_clicked()
 {
-
 if (!ui->lineEdit->text().isEmpty()) {
     QString value = ui->lineEdit->text();
 
@@ -188,8 +187,8 @@ void Calculator::on_pushButton_graph_clicked()
        ui->widget->addGraph();
        ui->widget->graph(0)->addData(data_plot.first, data_plot.second);
        ui->widget->replot();
-     } catch (...) {
-       ui->lineEdit->setText("invalid parametr");
+     } catch (std::exception& e) {
+       ui->lineEdit->setText(e.what());
      }
 
 }
