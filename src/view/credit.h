@@ -2,6 +2,7 @@
 #define CREDIT_H
 
 #include <QDialog>
+#include "../controller/controller.h"
 
 namespace Ui {
 class Credit;
@@ -19,8 +20,10 @@ private slots:
     void on_calculate_clicked();
 
 
+
 private:
     Ui::Credit *ui;
+    s21::Controller controller_{};
 };
 
 #endif // CREDIT_H

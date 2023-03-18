@@ -14,18 +14,17 @@
 #include <QString>
 #include <QVector>
 #include <vector>
-#include <utility>
-#include <string.h>
 
 namespace s21 {
 
     class Controller {
     public:
-//        /**
-//         * Выполняет расчет выражения
-//         * @param expression строка с математическим выражением в прямой форме
-//         * @return результат расчета
-//         */
+
+        /**
+         * Выполняет расчет выражения
+         * @param expression строка с математическим выражением в прямой форме
+         * @return результат расчета
+         */
         double Calculation(QString &expression);
 
 
@@ -38,12 +37,14 @@ namespace s21 {
         const DataPlot &data_plot
         );
 
-//        /**
-//         * Расчитывает платеж по кредиту за период
-//         * @param data_credit
-//         * @return
-//         */
-//        DataCredit CreditCalculation(DataCredit &data_credit);
+        /**
+         * Расчитывает платеж по кредиту за период
+         * @param data_credit
+         * @return
+         */
+        DataCredit& CreditCalculation(DataCredit &data_credit) {
+            return model_.CreditCalculation(data_credit);
+          }
 
 //        /**
 //         * Расчитывает проценты по депозиту
@@ -53,6 +54,7 @@ namespace s21 {
 //        DataDeposit DebitCalculation(DataDeposit &data_deposit);
 
     private:
+
         Model model_{};
     };
 

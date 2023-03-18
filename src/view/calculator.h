@@ -13,10 +13,6 @@
 #define AVERAGE_DAYS_IN_MONTH 30.416666666666667851
 #define NDFL 13/100
 
-//extern "C" {
-//#include "../../s21_smart_calc.h"
-//}
-
 QT_BEGIN_NAMESPACE
 namespace Ui { class Calculator; }
 QT_END_NAMESPACE

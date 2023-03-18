@@ -19,7 +19,6 @@ HEADERS += \
     ../model/executors/plot.h \
     ../model/executors/validator.h \
     ../model/fasad/model.h \
-    ../s21_smart_calc.h \
     calculator.h \
     credit.h \
     debit.h \
@@ -37,7 +36,6 @@ SOURCES += \
     ../model/executors/plot.cc \
     ../model/executors/validator.cc \
     ../model/fasad/model.cc \
-    ../s21_smart_calc.c \
     calculator.cc \
     credit.cc \
     debit.cc \

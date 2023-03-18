@@ -1,5 +1,5 @@
 #include "credit.h"
-#include "ui_secondwindow.h"
+#include "ui_credit.h"
 #include "calculator.h"
 #include <QDebug>
 
@@ -21,54 +21,34 @@ Credit::~Credit()
 
 void Credit::on_calculate_clicked()
 {
-    QString line, count;
-    double rate, coeff, sum, months, pay_per_months, total = 0.0, common_pay_per_months;
-    months = ui->lineEdit_limit->text().toDouble();
-    sum = ui->lineEdit_sum_credit->text().toDouble();
-    ui->listWidget_pay->clear();
-    if (ui->annuit->isChecked()) {
-        rate = ui->lineEdit_percent->text().toDouble() / 12 / 100;
-        coeff = rate * pow((1 + rate), months) / (pow((1 + rate), months) - 1);
-        pay_per_months = coeff * sum;
-        total = pay_per_months * months;
-        total = round(total);
-        pay_per_months = round(pay_per_months);
-        line = QString::number(total, 'g', 20);
-        ui->lineEdit_total_sum->setText(line);
-        line = QString::number(total - sum, 'g', 20);
-        ui->lineEdit_overpayment->setText(line);
-        line = QString::number(pay_per_months, 'g', 20);
-        for(int i = 1; i <= (int)months; i++) {
-           count =QString::number(i, 'g', 20);
-           ui->listWidget_pay->addItem(count  + " month: " + line);
-        }
-    } else if (ui->diff->isChecked()) {
-        pay_per_months = sum / months;
-        double tmp = sum;
-        rate = ui->lineEdit_percent->text().toDouble();
-        for(int i = 1; i <= (int)months; i++) {
-            common_pay_per_months = pay_per_months + (tmp * rate / 100 * AVERAGE_DAYS_IN_MONTH / 365);
-            count =QString::number(i, 'g', 20);
-            common_pay_per_months = round(common_pay_per_months);
-            line = QString::number(common_pay_per_months, 'g', 20);
-            ui->listWidget_pay->addItem(count  + " month: " + line);
-            tmp -= pay_per_months;
-            total += common_pay_per_months;
-        }
-        total = round(total);
-        line = QString::number(total, 'g', 20);
-        ui->lineEdit_total_sum->setText(line);
-        line = QString::number(total - sum, 'g', 20);
-        ui->lineEdit_overpayment->setText(line);
-    }
+    // ____INPUT____
+     TypeOfCredit input_type_of_credit = (ui->annuit->isChecked()) ? ANNUITY : DIFFERENTIATED;
+     double input_total_credit = ui->lineEdit_sum_credit->text().toDouble(); // sum
+     int input_term_in_months = ui->lineEdit_limit->text().toInt(); // months
+     double input_interest_rate = ui->lineEdit_percent->text().toDouble(); // rate / 12 / 100;
 
+     ui->listWidget_pay->clear();
 
-//    qDebug()<<coeff;
-//    qDebug()<<pay_per_months;
-//    qDebug()<<total;
+     s21::DataCredit data_credit(input_type_of_credit, input_total_credit, input_term_in_months, input_interest_rate);
+
+     data_credit = controller_.CreditCalculation(data_credit);
+
+     // ____OUTPUT____
+     std::vector<double> output_monthly_payment = data_credit.output_monthly_payment_;
+     double output_overpayment_loan = data_credit.output_overpayment_loan_;
+     double output_final_payment = data_credit.output_final_payment_;
+
+     // ____SETTING_VALUES____
+     ui->lineEdit_total_sum->setText(QString::number(output_final_payment, 'g', 20));
+     ui->lineEdit_overpayment->setText(QString::number(output_overpayment_loan, 'g', 20));
+
+     for(int i = 1; i <= input_term_in_months; i++) {
+       ui->listWidget_pay->addItem(QString::number(i, 'g', 20) + " month: " + QString::number(output_monthly_payment.at(i - 1), 'g', 20));
+     }
+
 }
 
-
+//    qDebug()<<total;
 
 /*
 

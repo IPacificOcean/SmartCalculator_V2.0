@@ -10,8 +10,8 @@
 #include <queue>
 #include <string>
 #include <vector>
-#include <utility>
-#include <QDebug>
+//#include <utility>
+//#include <QDebug>
 
 #include "../data/data_credit.h"
 #include "../data/data_deposit.h"
@@ -20,6 +20,7 @@
 #include "../executors/plot.h"
 #include "../executors/parser.h"
 #include "../executors/validator.h"
+#include "../executors/credit_exec.h"
 
 namespace s21 {
 
@@ -40,15 +41,18 @@ namespace s21 {
         std::pair<std::vector<double>, std::vector<double>> PlotCalculation(
                 const DataPlot &data_plot);
 
-//        DataCredit CreditCalculation(DataCredit &data_credit);
+        DataCredit& CreditCalculation(DataCredit &data_credit) {
+            return calculator_credit_.CreditCalculation(data_credit);
+          }
 
 //        DataDeposit DebitCalculation(DataDeposit &data_deposit);
 
     private:
         Validator validator_;
         Parser parser_;
-        Calculator calculator_;
+        s21::Calculator calculator_;
         CalculatorPlot calculator_plot_;
+        CalculatorCredit calculator_credit_;
     };
 
 }  // namespace s21
