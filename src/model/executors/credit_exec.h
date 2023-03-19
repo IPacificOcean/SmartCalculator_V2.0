@@ -1,8 +1,6 @@
 #ifndef CREDIT_EXEC_H
 #define CREDIT_EXEC_H
 
-//#include <QDialog>
-
 #include "../data/data_credit.h"
 #include <cmath>
 

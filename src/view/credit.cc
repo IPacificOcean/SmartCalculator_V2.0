@@ -22,14 +22,14 @@ Credit::~Credit()
 void Credit::on_calculate_clicked()
 {
     // ____INPUT____
-     TypeOfCredit input_type_of_credit = (ui->annuit->isChecked()) ? ANNUITY : DIFFERENTIATED;
-     double input_total_credit = ui->lineEdit_sum_credit->text().toDouble(); // sum
-     int input_term_in_months = ui->lineEdit_limit->text().toInt(); // months
-     double input_interest_rate = ui->lineEdit_percent->text().toDouble(); // rate / 12 / 100;
+    Loan_type l_type = (ui->annuit->isChecked()) ? ANNUITY : DIFFERENTIATED;
+     double loan_sum = ui->lineEdit_sum_credit->text().toDouble(); // sum
+     int period_in_months = ui->lineEdit_limit->text().toInt(); // months
+     double percent_rate = ui->lineEdit_percent->text().toDouble(); // rate / 12 / 100;
 
      ui->listWidget_pay->clear();
 
-     s21::DataCredit data_credit(input_type_of_credit, input_total_credit, input_term_in_months, input_interest_rate);
+     s21::DataCredit data_credit(l_type, loan_sum, period_in_months, percent_rate);
 
      data_credit = controller_.CreditCalculation(data_credit);
 
@@ -42,7 +42,7 @@ void Credit::on_calculate_clicked()
      ui->lineEdit_total_sum->setText(QString::number(output_final_payment, 'g', 20));
      ui->lineEdit_overpayment->setText(QString::number(output_overpayment_loan, 'g', 20));
 
-     for(int i = 1; i <= input_term_in_months; i++) {
+     for(int i = 1; i <= period_in_months; i++) {
        ui->listWidget_pay->addItem(QString::number(i, 'g', 20) + " month: " + QString::number(output_monthly_payment.at(i - 1), 'g', 20));
      }
 

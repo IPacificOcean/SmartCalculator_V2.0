@@ -7,24 +7,23 @@
 
 #include <vector>
 
-enum TypeOfCredit { ANNUITY, DIFFERENTIATED };
+enum Loan_type { ANNUITY, DIFFERENTIATED };
 
 namespace s21 {
 
 struct DataCredit {
-  DataCredit(TypeOfCredit input_type_of_credit, double input_total_credit,
-             int input_term_in_months, double input_interest_rate)
-      : input_type_of_credit_(input_type_of_credit),
-        input_total_credit_(input_total_credit),
-        input_term_in_months_(input_term_in_months),
-        input_interest_rate_(input_interest_rate) {}
+  DataCredit(Loan_type l_type, double loan_sum,
+             int period_in_months, double percent_rate)
+      : l_type_(l_type),
+        loan_sum_(loan_sum),
+        period_in_months_(period_in_months),
+        percent_rate_(percent_rate) {}
 
-  // ____INPUT____
-  TypeOfCredit input_type_of_credit_ = ANNUITY;
-  double input_total_credit_{};
-  int input_term_in_months_{};
-  double input_interest_rate_{};
-  // ____OUTPUT____
+  Loan_type l_type_ = ANNUITY;
+  double loan_sum_{};
+  int period_in_months_{};
+  double percent_rate_{};
+
   std::vector<double> output_monthly_payment_{};
   double output_overpayment_loan_{};
   double output_final_payment_{};

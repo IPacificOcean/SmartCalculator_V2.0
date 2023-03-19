@@ -21,7 +21,7 @@ namespace s21 {
     public:
 
         /**
-         * Выполняет расчет выражения
+         * @brief Calculates a mathematical expression
          * @param expression строка с математическим выражением в прямой форме
          * @return результат расчета
          */
