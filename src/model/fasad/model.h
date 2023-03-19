@@ -10,8 +10,6 @@
 #include <queue>
 #include <string>
 #include <vector>
-//#include <utility>
-//#include <QDebug>
 
 #include "../data/data_credit.h"
 #include "../data/data_deposit.h"
@@ -34,16 +32,21 @@ namespace s21 {
         double Calculation(std::string &expression);
 
         /**
-         *
-         * @param data_plot
-         * @return
+         * @brief Calculates a mathematical expression for the graph
+         * @param data_plot - a class that contains the data for counting
+         * @return pair with 2 arrays of coordinates x, y to plot
          */
         std::pair<std::vector<double>, std::vector<double>> PlotCalculation(
                 const DataPlot &data_plot);
 
-        DataCredit& CreditCalculation(DataCredit &data_credit) {
+        /**
+         * @brief Calculates loan payments
+         * @param data_credit - a structure that contains data on the loan
+         * @return structure that contains the data with the credit calculations
+         */
+        DataCredit &CreditCalculation(DataCredit &data_credit) {
             return calculator_credit_.CreditCalculation(data_credit);
-          }
+        }
 
 //        DataDeposit DebitCalculation(DataDeposit &data_deposit);
 

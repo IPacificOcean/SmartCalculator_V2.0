@@ -3,34 +3,35 @@
 
 
 s21::DataCredit &s21::CalculatorCredit::CreditCalculation(s21::DataCredit &data_credit) {
-        double coefficient{}, pay_per_months{}, common_pay_per_months{};
+    double coefficient{}, pay_per_months{}, common_pay_per_months{};
 
     // ____INPUT____
     Loan_type &l_type = data_credit.l_type_;
     double &loan_sum = data_credit.loan_sum_; // sum
     int &period_in_months = data_credit.period_in_months_; // months
-    double &percent_rate = data_credit.percent_rate_ ; // rate / 12 / 100;
+    double &percent_rate = data_credit.percent_rate_; // rate / 12 / 100;
     // ____OUTPUT____
-    double& output_overpayment_loan = data_credit.output_overpayment_loan_; // lineEdit_overpayment
-    double& output_final_payment = data_credit.output_final_payment_; // total
-    std::vector<double>& output_monthly_payment = data_credit.output_monthly_payment_;
+    double &output_overpayment_loan = data_credit.output_overpayment_loan_; // lineEdit_overpayment
+    double &output_final_payment = data_credit.output_final_payment_; // total
+    std::vector<double> &output_monthly_payment = data_credit.output_monthly_payment_;
 
     if (l_type == ANNUITY) {
         percent_rate = percent_rate / 12 / 100;
-        coefficient = percent_rate * pow((1 + percent_rate), period_in_months) / (pow((1 + percent_rate), period_in_months) - 1);
+        coefficient = percent_rate * pow((1 + percent_rate), period_in_months) /
+                      (pow((1 + percent_rate), period_in_months) - 1);
         pay_per_months = coefficient * loan_sum;
         output_final_payment = pay_per_months * period_in_months;
         output_final_payment = round(output_final_payment);
         pay_per_months = round(pay_per_months);
         output_overpayment_loan = output_final_payment - loan_sum;
-        for(int i = 0; i < period_in_months; ++i) {
+        for (int i = 0; i < period_in_months; ++i) {
             output_monthly_payment.push_back(pay_per_months);
         }
     } else if (l_type == DIFFERENTIATED) {
         pay_per_months = loan_sum / period_in_months;
         double tmp = loan_sum;
 
-        for(int i = 0; i < period_in_months; ++i) {
+        for (int i = 0; i < period_in_months; ++i) {
             common_pay_per_months = pay_per_months + (tmp * percent_rate / 100 * AVERAGE_DAYS_IN_MONTH / 365);
             common_pay_per_months = round(common_pay_per_months);
             output_monthly_payment.push_back(common_pay_per_months);

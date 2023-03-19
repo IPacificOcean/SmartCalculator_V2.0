@@ -20,12 +20,19 @@ namespace s21 {
 
     class CalculatorPlot : public Calculator {
     public:
+        /**
+         * @brief Calculates a mathematical expression for the graph
+         * @param data_plot - a class that contains the data for counting
+         * @param rpn_expression - the list of tokens of a mathematical expression
+         * @return pair with 2 arrays of coordinates x, y to plot
+         */
         std::pair<std::vector<double>, std::vector<double>> PlotCalculation(
                 const DataPlot &data_plot, std::list<std::string> rpn_expression);
 
     private:
         void GetDigitFromRpn(const std::string &token, const double &xValue,
                              std::stack<double> &numbers);
+
         double CalculateStepSize(const DataPlot &data_plot);
     };
 

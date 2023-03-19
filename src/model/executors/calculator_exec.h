@@ -18,30 +18,32 @@ namespace s21 {
     public:
         /***
          * @brif main method for calculation expression
+         * @param rpn_expression - the list of tokens of a mathematical expression
+         * @return calculation result
          */
         double Calculate(std::list<std::string> &rpn_expression);
 
     protected:
         /***
-         * @brif Converts the string to a number from a queue rpn and pushes it to the
-         * stack numbers
+         * @brif Converts the string to a number from a list rpn and pushes it to the stack numbers
          * @param token is string-number
          */
         void GetDigitFromRpn(const std::string &token);
+
         /***
          * @brif calculates expression (binary operator)
-         * @param token is operator
+         * @param token is a operator, numbers - stack of numbers
+         * @return the result of calculations with a particular operator
          */
         double BinaryFunc(std::string &token, std::stack<double> &numbers);
+
         /***
-         * @brif calculates expression (unary operator)
-         * @param token is operator
+         * @brif calculates expression (binary operator)
+         * @param token is a operator, numbers - stack of numbers
+         * @return the result of calculations with a particular operator
          */
         double UnaryFunc(std::string &token, std::stack<double> &numbers);
-        //  std::queue<std::string> rpn_expression_;
-        //  std::stack<double> numbers_;
 
-    private:
     };
 }  // namespace s21
 

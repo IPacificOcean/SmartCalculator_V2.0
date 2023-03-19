@@ -14,11 +14,20 @@ namespace s21 {
 
     class Validator {
     public:
-
+        /***
+        * @brif main method for calculation expression
+        * @param expression -  a mathematical expression
+        * @return true if the expression is not valid
+        */
         bool IsNotValid(const std::string &expression) const;
 
     private:
-
+        /***
+        * @brif checks to see if the number is correct and shifts the index by the length of the number
+        * @param expression -  a mathematical expression
+        * @param index - index a string of expressions
+        * @return true if the number is not valid
+        */
         bool CheckNumber(size_t &index, const std::string &expression) const;
     };
 }  // namespace s21

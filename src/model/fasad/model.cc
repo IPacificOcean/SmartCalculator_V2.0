@@ -8,7 +8,7 @@ double s21::Model::Calculation(std::string &expression) {
     if (validator_.IsNotValid(expression)) {
         throw std::invalid_argument("Invalid input"); // todo something
     }
-    std::list<std::string> queueRpn = parser_.GetRpn(expression);
+    std::list<std::string> queueRpn = parser_.ExpressionToRpn(expression);
     double result{};
     try {
         result = calculator_.Calculate(queueRpn);
@@ -18,14 +18,14 @@ double s21::Model::Calculation(std::string &expression) {
     return result;
 }
 
-std::pair<std::vector<double>, std::vector<double>> s21::Model::PlotCalculation (
+std::pair<std::vector<double>, std::vector<double>> s21::Model::PlotCalculation(
         const DataPlot &data_plot) {
 //            if (validator_.IsNotValid(data_plot.expression_)) {
 //                throw std::invalid_argument("Invalid input");
 //            }
 
     std::list<std::string> rpn_expression =
-            parser_.GetRpn(data_plot.expression_);
+            parser_.ExpressionToRpn(data_plot.expression_);
 
     std::pair<std::vector<double>, std::vector<double>> res;
 

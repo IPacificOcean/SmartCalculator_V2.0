@@ -16,8 +16,10 @@ double s21::Controller::Calculation(QString &expression) {
     return result;
 }
 
-std::pair<QVector < double>, QVector<double>> s21::Controller::PlotCalculation(
-const DataPlot &data_plot) {
+std::pair<QVector < double>, QVector<double>>
+
+s21::Controller::PlotCalculation(
+        const DataPlot &data_plot) {
     std::pair<QVector < double>, QVector < double >> castQvector;
 
     try {

@@ -25,7 +25,7 @@ s21::CalculatorPlot::PlotCalculation(const DataPlot &data_plot,
             xValue = 0.0;
         }
 
-        for (auto token : rpn_expression) {
+        for (auto token: rpn_expression) {
             GetDigitFromRpn(token, xValue, numbers);
             if (token == "+" || token == "-" || token == "*" || token == "/" ||
                 token == "^" || token == "m") {

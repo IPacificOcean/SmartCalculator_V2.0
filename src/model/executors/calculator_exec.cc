@@ -10,7 +10,7 @@ double s21::Calculator::Calculate(std::list<std::string> &rpn_expression) {
     std::stack<double> numbers{};
     double result{};
 
-    for (auto &token : rpn_expression) {
+    for (auto &token: rpn_expression) {
         if (isdigit(token.front())) {
             numbers.push(std::stod(token));
         }

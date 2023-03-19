@@ -10,8 +10,8 @@
 namespace s21 {
 
     struct DataPlot {
-        DataPlot(const std::string& expression, const double& x_begin,
-                 const double& x_end)
+        DataPlot(const std::string &expression, const double &x_begin,
+                 const double &x_end)
                 : expression_(expression), x_begin_(x_begin), x_end_(x_end) {}
 
         std::string expression_{};

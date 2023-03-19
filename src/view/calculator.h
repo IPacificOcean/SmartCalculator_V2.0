@@ -17,24 +17,30 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class Calculator; }
 QT_END_NAMESPACE
 
-class Calculator : public QMainWindow
-{
-    Q_OBJECT
+class Calculator : public QMainWindow {
+Q_OBJECT
 
 public:
     Calculator(QWidget *parent = nullptr);
+
     ~Calculator();
 
 private slots:
+
     void func_exp();
+
     void digit_nambers();
+
     void on_pushButton_eq_clicked();
+
     void on_pushButton_del_clicked();
 
     void on_pushButton_clear_clicked();
 
     void on_pushButton_graph_clicked();
+
     double doubleSpinBox_Xmax();
+
     double doubleSpinBox_Xmin();
 
 
@@ -48,8 +54,7 @@ private:
     double xBegin, xEnd, h, X, Y;
     int N;
 
-    QVector<double> x,y;
-
+    QVector<double> x, y;
 
 
 signals:

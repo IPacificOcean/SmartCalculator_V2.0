@@ -22,34 +22,34 @@ namespace s21 {
 
         /**
          * @brief Calculates a mathematical expression
-         * @param expression строка с математическим выражением в прямой форме
-         * @return результат расчета
+         * @param expression - a mathematical expression
+         * @return calculation result
          */
         double Calculation(QString &expression);
 
 
         /**
-         * Выполняет расчет для отрисовки графика
-         * @param data_plot класс который содержит данные для рсчета
-         * @return пару с 2 векторами координа х, у для построения графика
+         * @brief Calculates a mathematical expression for the graph
+         * @param data_plot - a class that contains the data for counting
+         * @return pair with 2 arrays of coordinates x, y to plot
          */
         std::pair<QVector < double>, QVector<double>> PlotCalculation(
         const DataPlot &data_plot
         );
 
         /**
-         * Расчитывает платеж по кредиту за период
-         * @param data_credit
-         * @return
+         * @brief Calculates loan payments
+         * @param data_credit - a structure that contains data on the loan
+         * @return structure that contains the data with the credit calculations
          */
-        DataCredit& CreditCalculation(DataCredit &data_credit) {
+        DataCredit &CreditCalculation(DataCredit &data_credit) {
             return model_.CreditCalculation(data_credit);
-          }
+        }
 
 //        /**
-//         * Расчитывает проценты по депозиту
-//         * @param data_deposit
-//         * @return
+//         * @brief  Calculates interest on the deposit
+//         * @param data_deposit - a structure that contains data on the deposit
+//         * @return structure that contains the data with the deposit calculations
 //         */
 //        DataDeposit DebitCalculation(DataDeposit &data_deposit);
 
