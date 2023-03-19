@@ -13,10 +13,6 @@ Calculator::Calculator(QWidget *parent)
         : QMainWindow(parent), ui(new Ui::Calculator) {
     ui->setupUi(this);
 
-//    form = new Formplot;
-//    form->show();
-//    connect(this, &MainWindow::signal, form, &Formplot::slot);
-
     connect(ui->pushButton_sin, SIGNAL(clicked()), this, SLOT(func_exp()));
     connect(ui->pushButton_cos, SIGNAL(clicked()), this, SLOT(func_exp()));
     connect(ui->pushButton_tan, SIGNAL(clicked()), this, SLOT(func_exp()));
@@ -83,7 +79,8 @@ void Calculator::on_pushButton_eq_clicked() {
         inputStr = QString::number(res, 'g', 15);
         ui->lineEdit->setText(inputStr);
     } catch (std::exception &e) {
-        ui->lineEdit->setText(e.what());
+//        QString error(e.what()); todo something
+        ui->lineEdit->setText("error");
     }
 }
 
