@@ -49,6 +49,11 @@ namespace s21 {
             return calculator_credit_.CreditCalculation(data_credit);
         }
 
+        /**
+        * @brief counts the amount of the deposit
+        * @param data_deposit - a structure that contains data on the deposit
+        * @return structure that contains the data with the deposit calculations
+        */
         DataDeposit &DebitCalculation(DataDeposit &data_deposit) {
             return calculator_debit_.DebitCalculation(data_deposit);
         };
