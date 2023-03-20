@@ -20,9 +20,9 @@ Credit::~Credit() {
 void Credit::on_calculate_clicked() {
     // ____INPUT____
     Loan_type l_type = (ui->annuit->isChecked()) ? ANNUITY : DIFFERENTIATED;
-    double loan_sum = ui->lineEdit_sum_credit->text().toDouble(); // sum
-    int period_in_months = ui->lineEdit_limit->text().toInt(); // months
-    double percent_rate = ui->lineEdit_percent->text().toDouble(); // rate / 12 / 100;
+    double loan_sum = ui->lineEdit_sum_credit->text().toDouble();
+    int period_in_months = ui->lineEdit_limit->text().toInt();
+    double percent_rate = ui->lineEdit_percent->text().toDouble();
 
     ui->listWidget_pay->clear();
 

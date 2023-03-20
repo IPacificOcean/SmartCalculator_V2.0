@@ -25,56 +25,56 @@ debit::~debit() {
 
 void debit::on_pushButton_calculate_clicked() {
     // ____INPUT____
-    double input_contribution_amount = ui->lineEdit_sum_dep->text().toDouble();   // сумма вклада // lineEdit_sum_dep
-    int input_period_of_placement = ui->lineEdit_period->text().toDouble();     // срок размещения // lineEdit_period
-    PeriodicityPayments input_periodicity_payments = (ui->comboBox_peiod_of_pay->currentText() == "Ежемесячно")
-                                                     ? MONTHLY : ONCE; // периодичность выплат // comboBox_peiod_of_pay
-    double input_interest_rate = ui->lineEdit_rate->text().toDouble();   // процентная ставка // lineEdit_rate
-    double input_tax_rate = ui->lineEdit_tax->text().toDouble();  // налоговая ставка // lineEdit_tax // * 1000000 / 100
+    double deposit_sum = ui->lineEdit_sum_dep->text().toDouble();
+    int deposit_period = ui->lineEdit_period->text().toDouble();
+    PeriodicityPayments payment_frequency = (ui->comboBox_peiod_of_pay->currentText() == "Ежемесячно")
+                                            ? MONTHLY : ONCE;
+    double percent_rate = ui->lineEdit_rate->text().toDouble();
+    double tax_rate = ui->lineEdit_tax->text().toDouble();
 
-    Capitalization iput_apitalization = (ui->comboBox_capital->currentText() == "Ежемесячно") ? MONTHLY_CAP
-                                                                                              : NO; // капитализация // comboBox_capital
+    Capitalization capitalization = (ui->comboBox_capital->currentText() == "Ежемесячно") ? MONTHLY_CAP
+                                                                                          : NO;
 
-    std::vector<double> input_refills{};    // пополнения // listWidget_add
+    std::vector<double> replenish_accounts{};
     while (ui->listWidget_add->count() != 0) {
-        input_refills.push_back(on_pushButton_del_clicked());
+        replenish_accounts.push_back(on_pushButton_del_clicked());
     }
 
-    std::vector<double> input_withdrawals{};  // снятия // listWidget_sub
+    std::vector<double> withdrawals{};
     while (ui->listWidget_sub->count() != 0) {
-        input_withdrawals.push_back(on_pushButton_del_2_clicked());
+        withdrawals.push_back(on_pushButton_del_2_clicked());
     }
 
     // ____CALCULATION____
-    s21::DataDeposit data_deposit(input_contribution_amount,
-                                  input_period_of_placement,
-                                  input_periodicity_payments,
-                                  input_interest_rate,
-                                  input_tax_rate,
-                                  iput_apitalization,
-                                  input_refills,
-                                  input_withdrawals);
+    s21::DataDeposit data_deposit(deposit_sum,
+                                  deposit_period,
+                                  payment_frequency,
+                                  percent_rate,
+                                  tax_rate,
+                                  capitalization,
+                                  replenish_accounts,
+                                  withdrawals);
 
     data_deposit = controller_.DebitCalculation(data_deposit);
 
     // ____OUTPUT____
-    double &output_total_refills = data_deposit.output_total_refills_;      // сумма пополнения // lineEdit_add_all // add_all
-    double &output_total_withdrawals = data_deposit.output_total_withdrawals_;  // сумма снятия // lineEdit_sub_all // sub_all
-    double &output_interest_charges = data_deposit.output_interest_charges_;  // начисленные проценты // lineEdit_percents // percents
-    double &output_tax_amount = data_deposit.output_tax_amount_;        // сумма налога // lineEdit_tax_sum // tax_sum
-    double &output_total_deposit_amount = data_deposit.output_total_deposit_amount_;  // сумма вклада к концу срока // lineEdit_total_sum_dep // total
+    double &replenishment_amount = data_deposit.replenishment_amount_;
+    double &withdrawal_amount = data_deposit.withdrawal_amount_;
+    double &total_interest = data_deposit.total_interest_;
+    double &amount_of_tax = data_deposit.amount_of_tax_;
+    double &total_deposit_amount = data_deposit.total_deposit_amount_;
 
 
     // ____SETTING_VALUES____
-    ui->lineEdit_add_all->setText(QString::number(output_total_refills));
-    ui->lineEdit_sub_all->setText(QString::number(output_total_withdrawals));
+    ui->lineEdit_add_all->setText(QString::number(replenishment_amount));
+    ui->lineEdit_sub_all->setText(QString::number(withdrawal_amount));
 
     ui->lineEdit_add->setText("0");
     ui->lineEdit_del->setText("0");
 
-    ui->lineEdit_total_sum_dep->setText(QString::number(output_total_deposit_amount, 'g', 20));
-    ui->lineEdit_percents->setText(QString::number(output_interest_charges, 'g', 20));
-    ui->lineEdit_tax_sum->setText(QString::number(output_tax_amount));
+    ui->lineEdit_total_sum_dep->setText(QString::number(total_deposit_amount, 'g', 20));
+    ui->lineEdit_percents->setText(QString::number(total_interest, 'g', 20));
+    ui->lineEdit_tax_sum->setText(QString::number(amount_of_tax));
 }
 
 double debit::on_pushButton_del_clicked() {

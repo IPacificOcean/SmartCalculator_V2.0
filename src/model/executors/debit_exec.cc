@@ -4,59 +4,59 @@
 s21::DataDeposit &s21::CalculatorDebit::DebitCalculation(s21::DataDeposit &data_deposit) {
     double part_for_tax{};
     // ____INPUT____
-    double &input_contribution_amount = data_deposit.input_contribution_amount_;   // сумма вклада // lineEdit_sum_dep
-    int &input_period_of_placement = data_deposit.input_period_of_placement_;     // срок размещения // lineEdit_period
-    PeriodicityPayments &input_periodicity_payments = data_deposit.input_periodicity_payments_; // периодичность выплат // comboBox_peiod_of_pay
-    double &input_interest_rate = data_deposit.input_interest_rate_;   // процентная ставка // lineEdit_rate
-    double &input_tax_rate = data_deposit.input_tax_rate_;  // налоговая ставка // lineEdit_tax
-    input_tax_rate = input_tax_rate * 1000000 / 100;
-    Capitalization &iput_apitalization = data_deposit.iput_apitalization_; // капитализация // comboBox_capital
-    std::vector<double> &input_refills = data_deposit.input_refills_;    // пополнения // listWidget_add
-    std::vector<double> &input_withdrawals = data_deposit.input_withdrawals_;  // снятия // listWidget_sub
+    double &deposit_sum = data_deposit.deposit_sum_;
+    int &deposit_period = data_deposit.deposit_period_;
+    PeriodicityPayments &payment_frequency = data_deposit.payment_frequency;
+    double &percent_rate = data_deposit.percent_rate;
+    double &tax_rate = data_deposit.tax_rate_;
+    tax_rate = tax_rate * 1000000 / 100;
+    Capitalization &capitalization = data_deposit.capitalization_;
+    std::vector<double> &replenish_accounts = data_deposit.replenish_accounts_;
+    std::vector<double> &withdrawals = data_deposit.withdrawals_;
 
     // ____OUTPUT____
-    double &output_total_refills = data_deposit.output_total_refills_;      // сумма пополнения // lineEdit_add_all // add_all
-    double &output_total_withdrawals = data_deposit.output_total_withdrawals_;  // сумма снятия // lineEdit_sub_all // sub_all
-    double &output_interest_charges = data_deposit.output_interest_charges_;  // начисленные проценты // lineEdit_percents // percents
-    double &output_tax_amount = data_deposit.output_tax_amount_;        // сумма налога // lineEdit_tax_sum // tax_sum
-    double &output_total_deposit_amount = data_deposit.output_total_deposit_amount_;  // сумма вклада к концу срока // lineEdit_total_sum_dep // total
+    double &replenishment_amount = data_deposit.replenishment_amount_;
+    double &withdrawal_amount = data_deposit.withdrawal_amount_;
+    double &total_interest = data_deposit.total_interest_;
+    double &amount_of_tax = data_deposit.amount_of_tax_;
+    double &total_deposit_amount = data_deposit.total_deposit_amount_;
 
     // ____CALCULATION____
-    for (auto refill: input_refills) {
-        output_total_refills += refill;
+    for (auto refill: replenish_accounts) {
+        replenishment_amount += refill;
     }
-    input_contribution_amount += output_total_refills;
+    deposit_sum += replenishment_amount;
 
-    for (auto withdrawal: input_withdrawals) {
-        output_total_withdrawals += withdrawal;
+    for (auto withdrawal: withdrawals) {
+        withdrawal_amount += withdrawal;
     }
-    input_contribution_amount -= output_total_withdrawals;
+    deposit_sum -= withdrawal_amount;
 
-    if (iput_apitalization == MONTHLY_CAP) {
-        output_interest_charges =
-                (input_contribution_amount * pow((1 + (input_interest_rate / 100) / 12), input_period_of_placement)) -
-                input_contribution_amount;
+    if (capitalization == MONTHLY_CAP) {
+        total_interest =
+                (deposit_sum * pow((1 + (percent_rate / 100) / 12), deposit_period)) -
+                deposit_sum;
     } else {
-        output_interest_charges =
-                (input_contribution_amount * input_interest_rate * input_period_of_placement * AVERAGE_DAYS_IN_MONTH /
+        total_interest =
+                (deposit_sum * percent_rate * deposit_period * AVERAGE_DAYS_IN_MONTH /
                  365) / 100;
     }
-    part_for_tax = output_interest_charges - input_tax_rate;
+    part_for_tax = total_interest - tax_rate;
 
-    if (part_for_tax > 0 && input_tax_rate) {
-        output_tax_amount = part_for_tax * NDFL;
+    if (part_for_tax > 0 && tax_rate) {
+        amount_of_tax = part_for_tax * NDFL;
     } else {
-        output_tax_amount = 0;
+        amount_of_tax = 0;
     }
 
-    if (input_periodicity_payments == MONTHLY) {
-        output_total_deposit_amount = input_contribution_amount;
+    if (payment_frequency == MONTHLY) {
+        total_deposit_amount = deposit_sum;
     } else {
-        output_total_deposit_amount = input_contribution_amount + output_interest_charges - output_tax_amount;
+        total_deposit_amount = deposit_sum + total_interest - amount_of_tax;
     }
 
-    output_total_deposit_amount = round(output_total_deposit_amount);
-    output_interest_charges = round(output_interest_charges);
+    total_deposit_amount = round(total_deposit_amount);
+    total_interest = round(total_interest);
 
     return data_deposit;
 }
@@ -93,5 +93,3 @@ K — количество дней в году — 365 или 366.
 
 (350000*4.7*273/365)/100 = 12303,7 (сумма может отличаться в зависимости от кол-ва дней в месяце)
 */
-
-

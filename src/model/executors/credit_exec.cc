@@ -7,12 +7,12 @@ s21::DataCredit &s21::CalculatorCredit::CreditCalculation(s21::DataCredit &data_
 
     // ____INPUT____
     Loan_type &l_type = data_credit.l_type_;
-    double &loan_sum = data_credit.loan_sum_; // sum
-    int &period_in_months = data_credit.period_in_months_; // months
-    double &percent_rate = data_credit.percent_rate_; // rate / 12 / 100;
+    double &loan_sum = data_credit.loan_sum_;
+    int &period_in_months = data_credit.period_in_months_;
+    double &percent_rate = data_credit.percent_rate_;
     // ____OUTPUT____
-    double &output_overpayment_loan = data_credit.output_overpayment_loan_; // lineEdit_overpayment
-    double &output_final_payment = data_credit.output_final_payment_; // total
+    double &output_overpayment_loan = data_credit.output_overpayment_loan_;
+    double &output_final_payment = data_credit.output_final_payment_;
     std::vector<double> &output_monthly_payment = data_credit.output_monthly_payment_;
 
     if (l_type == ANNUITY) {
@@ -99,10 +99,6 @@ s21::DataCredit &s21::CalculatorCredit::CreditCalculation(s21::DataCredit &data_
 4. Итого переплата по кредиту составила 337 889 рублей
 
 При погашении данного кредита дифференцированными платежами сумма уплаченных процентов по нему составила бы 308 915 рублей
-
-
-
-
 */
 
 
