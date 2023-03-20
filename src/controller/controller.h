@@ -46,12 +46,14 @@ namespace s21 {
             return model_.CreditCalculation(data_credit);
         }
 
-//        /**
-//         * @brief  Calculates interest on the deposit
-//         * @param data_deposit - a structure that contains data on the deposit
-//         * @return structure that contains the data with the deposit calculations
-//         */
-//        DataDeposit DebitCalculation(DataDeposit &data_deposit);
+        /**
+         * @brief  Calculates interest on the deposit
+         * @param data_deposit - a structure that contains data on the deposit
+         * @return structure that contains the data with the deposit calculations
+         */
+        DataDeposit &DebitCalculation(DataDeposit &data_deposit) {
+            return model_.DebitCalculation(data_deposit);
+        }
 
     private:
 

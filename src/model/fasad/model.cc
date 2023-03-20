@@ -5,7 +5,7 @@
 
 double s21::Model::Calculation(std::string &expression) {
     if (validator_.IsNotValid(expression)) {
-        throw std::invalid_argument("error: invalid input for calculate"); // todo something
+        throw std::invalid_argument("error: invalid input for calculate");
     }
     std::list<std::string> queueRpn = parser_.ExpressionToRpn(expression);
     double result{};

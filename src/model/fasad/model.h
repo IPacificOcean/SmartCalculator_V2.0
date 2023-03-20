@@ -19,6 +19,7 @@
 #include "../executors/parser.h"
 #include "../executors/validator.h"
 #include "../executors/credit_exec.h"
+#include "../executors/debit_exec.h"
 
 namespace s21 {
 
@@ -48,7 +49,9 @@ namespace s21 {
             return calculator_credit_.CreditCalculation(data_credit);
         }
 
-//        DataDeposit DebitCalculation(DataDeposit &data_deposit);
+        DataDeposit &DebitCalculation(DataDeposit &data_deposit) {
+            return calculator_debit_.DebitCalculation(data_deposit);
+        };
 
     private:
         Validator validator_;
@@ -56,6 +59,7 @@ namespace s21 {
         s21::Calculator calculator_;
         CalculatorPlot calculator_plot_;
         CalculatorCredit calculator_credit_;
+        CalculatorDebit calculator_debit_;
     };
 
 }  // namespace s21

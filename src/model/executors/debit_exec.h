@@ -1,34 +1,19 @@
-//#ifndef DEBIT_H
-//#define DEBIT_H
-//
-//#include <QDialog>
+#ifndef DEBIT_EXEC_H
+#define DEBIT_EXEC_H
 
-//namespace Ui {
-//class debit;
-//}
-//
-//class debit : public QDialog
-//{
-//    Q_OBJECT
-//
-//public:
-//    explicit debit(QWidget *parent = nullptr);
-//    ~debit();
-//
-//private slots:
-//    void on_pushButton_calculate_clicked();
-//
-//    double on_pushButton_del_clicked();
-//
-//    void on_pushButton_add_clicked();
-//
-//    double on_pushButton_del_2_clicked();
-//
-//    void on_pushButton_add_2_clicked();
-//
-//
-//private:
-//    Ui::debit *ui;
-//};
+#include <cmath>
+#include "../data/data_deposit.h"
+#include "credit_exec.h"
 
-//#endif // DEBIT_H
+
+constexpr double AVERAGE_DAYS = 30.416666666666667851;
+constexpr double NDFL = 13.00 / 100.00;
+
+namespace s21 {
+
+    class CalculatorDebit {
+    public:
+        DataDeposit &DebitCalculation(DataDeposit &data_deposit);
+    };
+}  // namespace s21
+#endif // DEBIT_EXEC_H

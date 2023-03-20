@@ -5,8 +5,6 @@
 #include <gtest/gtest.h>
 
 #include <iostream>
-//#include "../model/kernel/calculator.cc"
-//#include "../model/kernel/validator.cc"
 
 #include "../model/executors//parser.h"
 #include "../model/fasad/model.h"
@@ -169,16 +167,11 @@ TEST_F(Calculator_test, IsNotValid) {
 
 TEST_F(Calculator_test, DrawGraphValid) {
     std::string expression = "(X-X)";
-    DataPlot data_plot(expression, -1, 1);
+    DataPlot data_plot(expression, -10, 10);
     std::pair<std::vector<double>, std::vector<double>> result = model.PlotCalculation(data_plot);
 //    double should_result = 92.02799999999999;
 //    EXPECT_DOUBLE_EQ(calculated_result, should_result);
 }
 
 
-TEST_F(Calculator_test, Debug) {
-//    std::string expression = "Invalid inputv2";
-    std::string expression = "te2";
-    double result = model.Calculation(expression);
-//    std::cout << " _____ " << result <<  " _____ " <<  std::endl;
-}
+
