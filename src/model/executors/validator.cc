@@ -76,7 +76,8 @@ bool s21::Validator::IsNotValid(const std::string &expression) const {
                 (!strspn(&next, check) && next != ')' && next != 'X'))
                 error = failure;
         }
-        if (current == 'X' && (!strspn(&prev, check) && prev != '(' && prev != 'X'))
+        if ( current == 'X' && prev == 'X' ) error = failure;
+        if (i > 0 && current == 'X' && (!strspn(&prev, check) && prev != '(' && prev != 'X'))
             error = failure;
     }
     return error;

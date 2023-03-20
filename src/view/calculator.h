@@ -51,10 +51,8 @@ private slots:
 private:
     Ui::Calculator *ui;
     s21::Controller controller;
-    double xBegin, xEnd, h, X, Y;
-    int N;
+    double xBegin, xEnd;
 
-    QVector<double> x, y;
 
 
 signals:

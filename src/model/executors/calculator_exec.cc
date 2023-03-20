@@ -17,6 +17,8 @@ double s21::Calculator::Calculate(std::list<std::string> &rpn_expression) {
         if (token == "+" || token == "-" || token == "*" || token == "/" ||
             token == "^" || token == "m") {
             numbers.push(BinaryFunc(token, numbers));
+        } else if (token == "X") {
+                throw std::invalid_argument("invalid argument \"X\"");
         } else if (isalpha(token.front())) {
             numbers.push(UnaryFunc(token, numbers));
         }

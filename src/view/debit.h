@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+#include "../controller/controller.h"
+
 namespace Ui {
 class debit;
 }
@@ -29,6 +31,7 @@ private slots:
 
 private:
     Ui::debit *ui;
+    s21::Controller controller_{};
 };
 
 #endif // DEBIT_H

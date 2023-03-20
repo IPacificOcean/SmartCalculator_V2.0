@@ -1,7 +1,6 @@
 //
 // Created by Qyburn Bongo on 3/16/23.
 //
-
 #include "controller.h"
 
 double s21::Controller::Calculation(QString &expression) {
@@ -11,7 +10,7 @@ double s21::Controller::Calculation(QString &expression) {
         result = model_.Calculation(expressionToString);
     } catch (...) {
 //                throw std::invalid_argument("Invalid input");
-        throw;
+        throw ;
     }
     return result;
 }

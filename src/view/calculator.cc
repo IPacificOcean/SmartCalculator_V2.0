@@ -44,10 +44,7 @@ Calculator::Calculator(QWidget *parent)
     connect(ui->pushButton_brck_cl, SIGNAL(clicked()), this, SLOT(digit_nambers()));
     connect(ui->pushButton_var_x, SIGNAL(clicked()), this, SLOT(digit_nambers()));
 
-
-    connect(ui->pushButton_eq, SIGNAL(clicked()), this, SLOT(on_pushButton_eq_clicked()));
-
-    connect(ui->pushButton_del, SIGNAL(clicked()), this, SLOT(on_pushButton_del_clicked()));
+//    connect(ui->pushButton_del, SIGNAL(clicked()), this, SLOT(on_pushButton_del_clicked()));
 
 }
 
@@ -79,8 +76,8 @@ void Calculator::on_pushButton_eq_clicked() {
         inputStr = QString::number(res, 'g', 15);
         ui->lineEdit->setText(inputStr);
     } catch (std::exception &e) {
-//        QString error(e.what()); todo something
-        ui->lineEdit->setText("error");
+        QString error(e.what());
+        ui->lineEdit->setText(e.what());
     }
 }
 
@@ -88,9 +85,8 @@ void Calculator::on_pushButton_eq_clicked() {
 void Calculator::on_pushButton_del_clicked() {
     ui->lineEdit->clear();
     ui->widget->clearGraphs();
-//    ui->widget->graph(0)->data()->clear();
-    x.clear();
-    y.clear();
+//    x.clear();
+//    y.clear();
     ui->widget->replot();
 
 }
@@ -139,6 +135,11 @@ void Calculator::on_pushButton_graph_clicked() {
 //     ui->widget->yAxis->setRange(ui->lineEdit_y_min->text().toDouble(), ui->lineEdit_y_max->text().toDouble());
         try {
             data_plot = controller.PlotCalculation(data_plot_input);
+            ui->widget->addGraph();
+//            ui->widget->graph(0)->setData(data_plot.first, data_plot.second);
+            ui->widget->graph(0)->setPen(QColor(127, 127, 255, 127));
+            ui->widget->graph(0)->setLineStyle(QCPGraph::lsNone);
+            ui->widget->graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, 1));
             ui->widget->addGraph();
             ui->widget->graph(0)->addData(data_plot.first, data_plot.second);
             ui->widget->replot();
