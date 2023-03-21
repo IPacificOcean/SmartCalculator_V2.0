@@ -53,7 +53,7 @@
       <x>10</x>
       <y>20</y>
       <width>540</width>
-      <height>364</height>
+      <height>415</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -225,24 +225,8 @@
          </item>
          <item>
           <layout class="QGridLayout" name="gridLayout">
-           <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton_cos">
-             <property name="font">
-              <font>
-               <pointsize>20</pointsize>
-               <bold>false</bold>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <property name="text">
-              <string>cos</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QPushButton" name="pushButton_sin">
+           <item row="1" column="3">
+            <widget class="QPushButton" name="pushButton_ln">
              <property name="font">
               <font>
                <pointsize>20</pointsize>
@@ -250,7 +234,7 @@
               </font>
              </property>
              <property name="text">
-              <string>sin</string>
+              <string>ln</string>
              </property>
             </widget>
            </item>
@@ -267,19 +251,6 @@
              </property>
             </widget>
            </item>
-           <item row="0" column="3">
-            <widget class="QPushButton" name="pushButton_sqrt">
-             <property name="font">
-              <font>
-               <pointsize>20</pointsize>
-               <bold>false</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>sqrt</string>
-             </property>
-            </widget>
-           </item>
            <item row="1" column="0">
             <widget class="QPushButton" name="pushButton_acos">
              <property name="font">
@@ -290,123 +261,6 @@
              </property>
              <property name="text">
               <string>acos</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QPushButton" name="pushButton_asin">
-             <property name="font">
-              <font>
-               <pointsize>20</pointsize>
-               <bold>false</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>asin</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QPushButton" name="pushButton_atan">
-             <property name="font">
-              <font>
-               <pointsize>20</pointsize>
-               <bold>false</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>atan</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="3">
-            <widget class="QPushButton" name="pushButton_ln">
-             <property name="font">
-              <font>
-               <pointsize>20</pointsize>
-               <bold>false</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>ln</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QPushButton" name="pushButton_log">
-             <property name="font">
-              <font>
-               <pointsize>20</pointsize>
-               <bold>false</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>log</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QPushButton" name="pushButton_brck_cl">
-             <property name="font">
-              <font>
-               <pointsize>20</pointsize>
-               <bold>false</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="2">
-            <widget class="QPushButton" name="pushButton_pow">
-             <property name="font">
-              <font>
-               <pointsize>20</pointsize>
-               <bold>false</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>^</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="3">
-            <widget class="QPushButton" name="pushButton_brck_op">
-             <property name="font">
-              <font>
-               <pointsize>20</pointsize>
-               <bold>false</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>(</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QPushButton" name="pushButton_mod">
-             <property name="font">
-              <font>
-               <pointsize>20</pointsize>
-               <bold>false</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>mod</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QPushButton" name="pushButton_var_x">
-             <property name="font">
-              <font>
-               <pointsize>20</pointsize>
-               <bold>false</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>X</string>
              </property>
             </widget>
            </item>
@@ -423,7 +277,59 @@
              </property>
             </widget>
            </item>
-           <item row="3" column="3">
+           <item row="2" column="2">
+            <widget class="QPushButton" name="pushButton_pow">
+             <property name="font">
+              <font>
+               <pointsize>20</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>^</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="pushButton_atan">
+             <property name="font">
+              <font>
+               <pointsize>20</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>atan</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QPushButton" name="pushButton_mod">
+             <property name="font">
+              <font>
+               <pointsize>20</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>mod</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QPushButton" name="pushButton_log">
+             <property name="font">
+              <font>
+               <pointsize>20</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>log</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" colspan="4">
             <widget class="QPushButton" name="pushButton_del">
              <property name="font">
               <font>
@@ -433,6 +339,113 @@
              </property>
              <property name="text">
               <string>AC</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QPushButton" name="pushButton_sqrt">
+             <property name="font">
+              <font>
+               <pointsize>20</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>sqrt</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QPushButton" name="pushButton_sin">
+             <property name="font">
+              <font>
+               <pointsize>20</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>sin</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3">
+            <widget class="QPushButton" name="pushButton_brck_op">
+             <property name="font">
+              <font>
+               <pointsize>20</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>(</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QPushButton" name="pushButton_brck_cl">
+             <property name="font">
+              <font>
+               <pointsize>20</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QPushButton" name="pushButton_cos">
+             <property name="font">
+              <font>
+               <pointsize>20</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>cos</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QPushButton" name="pushButton_asin">
+             <property name="font">
+              <font>
+               <pointsize>20</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>asin</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QPushButton" name="pushButton_var_x">
+             <property name="font">
+              <font>
+               <pointsize>20</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>X</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3">
+            <widget class="QPushButton" name="pushButton_var_e">
+             <property name="font">
+              <font>
+               <pointsize>20</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>e</string>
              </property>
             </widget>
            </item>

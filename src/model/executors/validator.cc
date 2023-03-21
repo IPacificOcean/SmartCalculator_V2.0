@@ -70,7 +70,7 @@ bool s21::Validator::IsNotValid(const std::string &expression) const {
             if ((current == ')') && (!strspn(&next, check) && next != ')'))
                 error = failure;
             if ((isdigit(current)) &&
-                (!strspn(&next, check) && next != ')' && !isdigit(next)))
+                (!strspn(&next, check) && next != ')' && !isdigit(next)) && next != 'e')
                 error = failure;
             if (current == 'X' &&
                 (!strspn(&next, check) && next != ')' && next != 'X'))

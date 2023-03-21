@@ -43,8 +43,8 @@ Calculator::Calculator(QWidget *parent)
     connect(ui->pushButton_brck_op, SIGNAL(clicked()), this, SLOT(digit_nambers()));
     connect(ui->pushButton_brck_cl, SIGNAL(clicked()), this, SLOT(digit_nambers()));
     connect(ui->pushButton_var_x, SIGNAL(clicked()), this, SLOT(digit_nambers()));
+    connect(ui->pushButton_var_e, SIGNAL(clicked()), this, SLOT(digit_nambers()));
 
-//    connect(ui->pushButton_del, SIGNAL(clicked()), this, SLOT(on_pushButton_del_clicked()));
 
 }
 
