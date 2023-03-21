@@ -23,11 +23,6 @@ namespace s21 {
         */
         std::list<std::string> ExpressionToRpn(const std::string &expression);
 
-        void PrintExpression(std::string &expression) const { // todo: go to private
-            std::cout << expression << std::endl;
-        }
-
-        void PrintRpnExpression(std::list<std::string> &rpn_expression);
 
     private:
         /***
@@ -81,6 +76,12 @@ namespace s21 {
         */
         void UnaryMinusPlus(char c, size_t index, const std::string &expression,
                             std::list<std::string> &rpn_expression);
+
+        void PrintExpression(std::string &expression) const {
+            std::cout << expression << std::endl;
+        }
+
+        void PrintRpnExpression(std::list<std::string> &rpn_expression);
     };
 
 }  // namespace s21
