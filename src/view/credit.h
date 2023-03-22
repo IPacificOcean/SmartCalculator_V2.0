@@ -2,28 +2,27 @@
 #define CREDIT_H
 
 #include <QDialog>
+
 #include "../controller/controller.h"
 
 namespace Ui {
-    class Credit;
+class Credit;
 }
 
 class Credit : public QDialog {
-    Q_OBJECT
+  Q_OBJECT
 
-public:
-    explicit Credit(QWidget *parent = nullptr);
+ public:
+  explicit Credit(QWidget *parent = nullptr);
 
-    ~Credit();
+  ~Credit();
 
-private
-    slots:
-            void on_calculate_clicked();
+ private slots:
+  void on_calculate_clicked();
 
-
-private:
-    Ui::Credit *ui;
-    s21::Controller controller_{};
+ private:
+  Ui::Credit *ui;
+  s21::Controller controller_{};
 };
 
-#endif // CREDIT_H
+#endif  // CREDIT_H

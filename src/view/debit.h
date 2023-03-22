@@ -9,29 +9,27 @@ namespace Ui {
 class debit;
 }
 
-class debit : public QDialog
-{
-    Q_OBJECT
+class debit : public QDialog {
+  Q_OBJECT
 
-public:
-    explicit debit(QWidget *parent = nullptr);
-    ~debit();
+ public:
+  explicit debit(QWidget *parent = nullptr);
+  ~debit();
 
-private slots:
-    void on_pushButton_calculate_clicked();
+ private slots:
+  void on_pushButton_calculate_clicked();
 
-    double on_pushButton_del_clicked();
+  double on_pushButton_del_clicked();
 
-    void on_pushButton_add_clicked();
+  void on_pushButton_add_clicked();
 
-    double on_pushButton_del_2_clicked();
+  double on_pushButton_del_2_clicked();
 
-    void on_pushButton_add_2_clicked();
+  void on_pushButton_add_2_clicked();
 
-
-private:
-    Ui::debit *ui;
-    s21::Controller controller_{};
+ private:
+  Ui::debit *ui;
+  s21::Controller controller_{};
 };
 
-#endif // DEBIT_H
+#endif  // DEBIT_H

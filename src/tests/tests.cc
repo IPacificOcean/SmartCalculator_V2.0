@@ -220,3 +220,23 @@ TEST_F(Calculator_test, ValidationException4) {
 }
 
 
+TEST_F(Calculator_test, Plot) {
+    std::string expression = "2.58e+1*sin(X)+sqrt(5)";
+    double x_begin = -10.00;
+    double x_end = 10.00;
+    std::vector<double> values_x{};
+    double offset = ((abs(x_begin) + abs(x_end)) * 0.0001);
+    for (auto xValue = x_begin; xValue <= x_end; xValue += offset) {
+        if (fabs(xValue) < EPS) {
+            xValue = 0.0;
+        }
+        values_x.push_back(xValue);
+    }
+    DataPlot data_plot(expression, x_begin, x_end);
+    std::pair<std::vector<double>, std::vector<double>> result =
+            model.PlotCalculation(data_plot);
+    for (size_t i = 0; i < values_x.size(); ++i) {
+        EXPECT_DOUBLE_EQ(values_x.at(i), result.first.at(i));
+    }
+}
+
