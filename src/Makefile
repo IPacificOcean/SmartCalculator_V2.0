@@ -75,7 +75,7 @@ check:
 	clang-format -n $(SOURCE) $(SOURCE_CONTR) $(SOURCE_VIEW) $(HADS)
 
 ifeq ($(OS), Darwin)
-	leaks --atExit -- test
+	leaks --atExit -- ./test
 else
 	CK_FORK=no valgrind --vgdb=no --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=RESULT_VALGRIND.txt ./test
 endif

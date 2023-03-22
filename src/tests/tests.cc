@@ -6,8 +6,9 @@
 
 #include <iostream>
 
-#include "../model/executors//parser.h"
+#include "../model/executors/parser.h"
 #include "../model/fasad/model.h"
+#include "../model/executors/validator.h"
 
 using namespace s21;
 
@@ -15,6 +16,7 @@ class Calculator_test : public ::testing::Test {
 protected:
     void SetUp() override {}
     Model model;
+    Validator validator;
 };
 
 TEST_F(Calculator_test, Calculate) {
@@ -195,28 +197,28 @@ TEST_F(Calculator_test, DebitCalculateMonthly1) {
 }
 
 TEST_F(Calculator_test, ValidationException) {
-    std::string expression = "sin(X)";
-    EXPECT_ANY_THROW(model.Calculation(expression));
+    std::string expression = "sin(2X)";
+    EXPECT_TRUE(validator.IsNotValid(expression));
 }
 
 TEST_F(Calculator_test, ValidationException1) {
     std::string expression = "(1.1X)+3*2-5/2^X";
-    EXPECT_ANY_THROW(model.Calculation(expression));
+    EXPECT_TRUE(validator.IsNotValid(expression));
 }
 
 TEST_F(Calculator_test, ValidationException2) {
     std::string expression = "(1.1X)+3*2-5/2^X";
-    EXPECT_ANY_THROW(model.Calculation(expression));
+    EXPECT_TRUE(validator.IsNotValid(expression));
 }
 
 TEST_F(Calculator_test, ValidationException3) {
     std::string expression = "(X)+3*1.1*X*2-5/2^1.1X";
-    EXPECT_ANY_THROW(model.Calculation(expression));
+    EXPECT_TRUE(validator.IsNotValid(expression));
 }
 
 TEST_F(Calculator_test, ValidationException4) {
     std::string expression = "(X)+3*1.1*X1.1*2-5/2^1.1*X";
-    EXPECT_ANY_THROW(model.Calculation(expression));
+    EXPECT_TRUE(validator.IsNotValid(expression));
 }
 
 

@@ -56,5 +56,5 @@ void s21::CalculatorPlot::GetDigitFromRpn(const std::string &token,
 double s21::CalculatorPlot::CalculateStepSize(const DataPlot &data_plot) {
   double x_begin = abs(data_plot.x_begin_);
   double x_end = abs(data_plot.x_end_);
-  return static_cast<double>((x_begin + x_end) * 0.0001);
+  return ((x_begin + x_end) * 0.0001);
 }
