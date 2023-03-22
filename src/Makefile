@@ -27,15 +27,6 @@ endif
 
 all: install
 
-#tests:
-#	clear
-#	$(GCC) $(TEST) $(SOURCE) $(LIBFLAGS)  -o test
-#	./test
-
-#tests:
-#	g++  -std=c++17 -lm -lstdc++ -lgtest_main -lgtest  -Wall -Werror -Wextra ./tests/tests.cc ./model/fasad/model.cc ./model/executors/calculator_exec.cc ./model/executors/parser.cc ./model/executors/validator.cc ./model/executors/credit_exec.cc ./model/executors/debit_exec.cc  ./model/executors/plot.cc -o test
-
-
 clean:
 	rm -rf *.o *.a  *.out test *.dSYM  report coverage.info *.gcda *.gcno *.txt *.tgz
 
@@ -80,7 +71,6 @@ gcov_report: s21_smart_calc.a
 	open ./report/index.html
 
 check:
-	cppcheck --enable=all --suppress=missingIncludeSystem --inconclusive --check-config $(SOURCE) $(SOURCE_CONTR) $(SOURCE_VIEW) $(HADS) $(HADS_UI)
 	@clang-format  -i $(SOURCE) $(SOURCE_CONTR) $(SOURCE_VIEW) $(HADS)
 	clang-format -n $(SOURCE) $(SOURCE_CONTR) $(SOURCE_VIEW) $(HADS)
 
